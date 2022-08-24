@@ -79,7 +79,7 @@ flutter:
   fonts:
     - family: Rubik
       fonts:
-        - asset: fonts/Rubik.tff
+        - asset: fonts/Rubik.ttf
         - asset: fonts/Rubik-Italic.ttf
           style: italic
   # For details regarding fonts from package dependencies,
