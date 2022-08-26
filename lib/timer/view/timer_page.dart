@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:timee/timer/widget/progress_animation_widget.dart';
+
+import '../widgets/animated_progress_arc.dart';
 
 class TimerPage extends StatelessWidget {
-  const TimerPage({Key? key}) : super(key: key);
+  TimerPage({Key? key}) : super(key: key);
+
+  final AnimatedProgressArcController controller =
+      AnimatedProgressArcController();
 
   @override
   Widget build(BuildContext context) {
@@ -30,7 +34,7 @@ class TimerPage extends StatelessWidget {
                 ],
               ),
               const Padding(
-                padding: const EdgeInsets.all(8.0),
+                padding: EdgeInsets.all(8.0),
                 child: Text('Do something!',
                     style:
                         TextStyle(fontSize: 40, fontWeight: FontWeight.bold)),
@@ -49,7 +53,26 @@ class TimerPage extends StatelessWidget {
                   ),
                 ],
               ),
-              ProgressAnimationWidget(),
+              Container(
+                color: Colors.grey,
+                child: Center(
+                    child: AnimatedProgressArc(
+                  controller: controller,
+                )),
+              ),
+              IconButton(
+                  onPressed: () {
+                    controller.start();
+                  },
+                  icon: Icon(
+                    Icons.play_arrow_rounded,
+                    color: Colors.black,
+                  )),
+              IconButton(
+                  onPressed: () {
+                    controller.pause();
+                  },
+                  icon: Icon(Icons.pause_rounded)),
             ],
           ),
         ),
