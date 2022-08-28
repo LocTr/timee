@@ -44,11 +44,27 @@ class ArcPainter extends CustomPainter {
 
   @override
   void paint(Canvas canvas, Size size) {
-    var paint = Paint()
+    var paintFrontArc = Paint()
       ..style = PaintingStyle.stroke
       ..color = color
       ..isAntiAlias = true
-      ..strokeWidth = 10;
+      ..strokeWidth = strokeWidth
+      ..strokeCap = StrokeCap.round;
+
+    var paintBackArc = Paint()
+      ..style = PaintingStyle.stroke
+      ..color = Colors.grey
+      ..isAntiAlias = true
+      ..strokeWidth = strokeWidth;
+
+    canvas.drawArc(
+        Rect.fromCircle(
+            center: Offset(radius + strokeWidth / 2, radius + strokeWidth / 2),
+            radius: radius),
+        0,
+        math.pi * 2,
+        false,
+        paintBackArc);
 
     canvas.drawArc(
         Rect.fromCircle(
@@ -57,7 +73,7 @@ class ArcPainter extends CustomPainter {
         math.pi * 1.5,
         arc,
         false,
-        paint);
+        paintFrontArc);
   }
 
   @override

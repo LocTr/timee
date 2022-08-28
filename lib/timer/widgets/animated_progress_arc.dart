@@ -8,10 +8,16 @@ class AnimatedProgressArcController {
 }
 
 class AnimatedProgressArc extends StatefulWidget {
-  const AnimatedProgressArc({Key? key, required this.controller})
+  const AnimatedProgressArc(
+      {Key? key,
+      required this.controller,
+      required this.size,
+      required this.strokeWidth})
       : super(key: key);
 
   final AnimatedProgressArcController controller;
+  final double size;
+  final double strokeWidth;
 
   @override
   State<AnimatedProgressArc> createState() => _AnimatedProgressArcState();
@@ -29,7 +35,6 @@ class _AnimatedProgressArcState extends State<AnimatedProgressArc>
     );
 
     widget.controller.start = () => _controller.forward();
-
     widget.controller.pause = () => _controller.stop();
 
     // this create the same effect
@@ -51,8 +56,8 @@ class _AnimatedProgressArcState extends State<AnimatedProgressArc>
     return ProgressingArc(
       controller: _controller,
       color: Colors.blue,
-      size: 40,
-      strokeWidth: 10,
+      size: widget.size,
+      strokeWidth: widget.strokeWidth,
     );
   }
 }
