@@ -29,7 +29,6 @@ class _AnimatedProgressArcState extends State<AnimatedProgressArc>
 
   @override
   void initState() {
-    print('init state 1');
     _controller = AnimationController(
       vsync: this,
       duration: const Duration(seconds: 30),

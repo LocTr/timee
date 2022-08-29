@@ -3,7 +3,10 @@ import 'package:flutter/material.dart';
 class ScreenHeader extends StatelessWidget {
   const ScreenHeader({
     Key? key,
+    required this.title,
   }) : super(key: key);
+
+  final String title;
 
   @override
   Widget build(BuildContext context) {
@@ -19,8 +22,11 @@ class ScreenHeader extends StatelessWidget {
         const SizedBox(
           width: 12,
         ),
-        const Text('Do something!',
-            style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold)),
+        Text(title,
+            style: const TextStyle(
+              fontSize: 24,
+              fontWeight: FontWeight.bold,
+            )),
       ],
     );
   }

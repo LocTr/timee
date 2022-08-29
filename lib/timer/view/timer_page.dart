@@ -24,7 +24,9 @@ class _TimerPageState extends State<TimerPage> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const ScreenHeader(),
+              const ScreenHeader(
+                title: 'Do something',
+              ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [
@@ -55,8 +57,7 @@ class _TimerPageState extends State<TimerPage> {
                               ? constraints.maxHeight
                               : constraints.maxWidth;
                       return Center(
-                        child: Container(
-                          color: Colors.red[100],
+                        child: SizedBox(
                           width: size,
                           height: size,
                           child: Stack(
