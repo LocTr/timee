@@ -18,10 +18,10 @@ class ProgressingArc extends AnimatedWidget {
   @override
   Widget build(BuildContext context) {
     return CustomPaint(
-      size: Size.square(size + strokeWidth),
+      size: Size.fromRadius(strokeWidth + size),
       painter: ArcPainter(
         strokeWidth: strokeWidth,
-        radius: size / 2,
+        radius: (size - strokeWidth) / 2,
         arc: _progress.value * 2 * math.pi,
         color: color,
       ),

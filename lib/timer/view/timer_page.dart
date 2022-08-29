@@ -3,15 +3,20 @@ import 'package:timee/shared_widget/header.dart';
 
 import '../widgets/animated_progress_arc.dart';
 
-class TimerPage extends StatelessWidget {
-  TimerPage({Key? key}) : super(key: key);
+class TimerPage extends StatefulWidget {
+  const TimerPage({Key? key}) : super(key: key);
 
+  @override
+  State<TimerPage> createState() => _TimerPageState();
+}
+
+class _TimerPageState extends State<TimerPage> {
+  // somehow this cannot init properly on stateless widget
   final AnimatedProgressArcController controller =
       AnimatedProgressArcController();
 
   @override
   Widget build(BuildContext context) {
-    print('build again @@');
     return Scaffold(
       body: SafeArea(
         child: Padding(
@@ -24,7 +29,7 @@ class TimerPage extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [
                   Wrap(
-                    spacing: 2.0,
+                    spacing: 4.0,
                     children: const [
                       Chip(
                         label: Text('Work'),
@@ -33,37 +38,68 @@ class TimerPage extends StatelessWidget {
                         label: Text('Design'),
                       ),
                       SizedBox(
-                        width: 12,
+                        width: 24,
                       ),
                     ],
                   ),
                 ],
               ),
               Expanded(
-                child: Center(
-                    child: AnimatedProgressArc(
-                  size: 250,
-                  strokeWidth: 20,
-                  controller: controller,
-                )),
+                flex: 3,
+                child: Padding(
+                  padding: const EdgeInsets.all(24.0),
+                  child: LayoutBuilder(
+                    builder: ((context, constraints) {
+                      double size =
+                          (constraints.maxWidth > constraints.maxHeight)
+                              ? constraints.maxHeight
+                              : constraints.maxWidth;
+                      return Center(
+                        child: Container(
+                          color: Colors.red[100],
+                          width: size,
+                          height: size,
+                          child: Stack(
+                            alignment: AlignmentDirectional.center,
+                            children: [
+                              Text('23:20',
+                                  style: TextStyle(
+                                      fontSize: size / 5,
+                                      fontWeight: FontWeight.w900)),
+                              AnimatedProgressArc(
+                                size: size,
+                                strokeWidth: 20,
+                                controller: controller,
+                              ),
+                            ],
+                          ),
+                        ),
+                      );
+                    }),
+                  ),
+                ),
               ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  IconButton(
-                      onPressed: () {
-                        controller.start();
-                      },
-                      icon: const Icon(
-                        Icons.play_arrow_rounded,
-                        color: Colors.black,
-                      )),
-                  IconButton(
-                      onPressed: () {
-                        controller.pause();
-                      },
-                      icon: const Icon(Icons.pause_rounded)),
-                ],
+              Expanded(
+                flex: 1,
+                child: Row(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    IconButton(
+                        onPressed: () {
+                          controller.start();
+                        },
+                        icon: const Icon(
+                          Icons.play_arrow_rounded,
+                          color: Colors.black,
+                        )),
+                    IconButton(
+                        onPressed: () {
+                          controller.pause();
+                        },
+                        icon: const Icon(Icons.pause_rounded)),
+                  ],
+                ),
               ),
             ],
           ),

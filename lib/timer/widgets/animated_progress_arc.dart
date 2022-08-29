@@ -29,13 +29,11 @@ class _AnimatedProgressArcState extends State<AnimatedProgressArc>
 
   @override
   void initState() {
+    print('init state 1');
     _controller = AnimationController(
       vsync: this,
-      duration: const Duration(seconds: 2),
+      duration: const Duration(seconds: 30),
     );
-
-    widget.controller.start = () => _controller.forward();
-    widget.controller.pause = () => _controller.stop();
 
     // this create the same effect
     // _animation = CurvedAnimation(parent: _controller, curve: Curves.linear);
@@ -48,7 +46,13 @@ class _AnimatedProgressArcState extends State<AnimatedProgressArc>
     //   }));
 
     super.initState();
-    _controller.forward();
+  }
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    widget.controller.start = () => _controller.forward();
+    widget.controller.pause = () => _controller.stop();
   }
 
   @override
