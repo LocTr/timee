@@ -23,3 +23,7 @@ class TimerInitial extends TimerState {
 class TimerRunPause extends TimerState {
   const TimerRunPause({required super.duration});
 }
+
+class TimerRunInProgress extends TimerState {
+  const TimerRunInProgress({required super.duration});
+}

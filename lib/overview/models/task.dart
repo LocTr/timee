@@ -1,4 +1,4 @@
-abstract class Task {
+class Task {
   final String title;
   final int targetTime;
   final int timeSpent;
