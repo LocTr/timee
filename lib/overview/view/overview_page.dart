@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:timee/overview/models/task.dart';
 
 import '../widgets/task_entry.dart';
 
@@ -14,16 +15,20 @@ class OverviewPage extends StatelessWidget {
               padding: const EdgeInsets.all(8.0),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.stretch,
-                children: const [
-                  Text('Today tasks',
+                children: [
+                  const Text('Today tasks',
                       style: TextStyle(
                         fontSize: 24,
                       )),
-                  TaskEntry(),
-                  SizedBox(
+                  TaskEntry(
+                    task: tasks[0],
+                  ),
+                  const SizedBox(
                     height: 12,
                   ),
-                  TaskEntry(),
+                  TaskEntry(
+                    task: tasks[1],
+                  ),
                 ],
               ))),
       bottomNavigationBar: Padding(
@@ -41,3 +46,18 @@ class OverviewPage extends StatelessWidget {
     );
   }
 }
+
+const tasks = <Task>[
+  Task(
+    title: 'Study java or c#',
+    targetTime: 36000,
+    timeSpent: 1800,
+    isDone: false,
+  ),
+  Task(
+    title: 'Exercise',
+    targetTime: 4800,
+    timeSpent: 1800,
+    isDone: false,
+  ),
+];

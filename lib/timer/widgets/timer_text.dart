@@ -13,6 +13,6 @@ class TimerText extends StatelessWidget {
     final minutesStr = (duration / 60).floor().toString().padLeft(2, '0');
     final secondsStr = (duration % 60).floor().toString().padLeft(2, '0');
     return Text('$hoursStr:$minutesStr:$secondsStr',
-        style: TextStyle(fontSize: fontSize, fontWeight: FontWeight.w900));
+        style: TextStyle(fontSize: fontSize, fontWeight: FontWeight.w500));
   }
 }

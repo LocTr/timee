@@ -1,12 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:timee/overview/models/task.dart';
 
 class TaskEntry extends StatelessWidget {
-  const TaskEntry({
-    Key? key,
-  }) : super(key: key);
+  final Task task;
+  const TaskEntry({Key? key, required this.task}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    final timeRemaining = task.targetTime - task.timeSpent;
+    final hoursStr = (timeRemaining / 3600).floor().toString();
+    final minutesStr =
+        (timeRemaining / 60 % 60).floor().toString().padLeft(2, '0');
     return Card(
       color: Color(0xFAFAFAFA),
       clipBehavior: Clip.antiAlias,
@@ -20,7 +24,7 @@ class TaskEntry extends StatelessWidget {
               children: [
                 Expanded(
                   child: ListTile(
-                    title: const Text('Code this app'),
+                    title: Text(task.title),
                     subtitle: Wrap(
                       children: const [
                         Text('this'),
@@ -29,7 +33,7 @@ class TaskEntry extends StatelessWidget {
                     ),
                   ),
                 ),
-                const Text('1h30m to go'),
+                Text('$hoursStr h $minutesStr m to go'),
                 const SizedBox(
                   width: 12,
                 ),

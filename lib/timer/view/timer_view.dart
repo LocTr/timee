@@ -75,7 +75,7 @@ class _TimerViewState extends State<TimerView> {
                                 builder: (context, state) {
                                   return TimerText(
                                       duration: state.duration,
-                                      fontSize: size / 5);
+                                      fontSize: size / 6);
                                 },
                               ),
                             ],

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:timee/overview/view/overview_page.dart';
 import 'package:timee/timer/view/timer_page.dart';
 
 void main() {
@@ -17,7 +18,7 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
         fontFamily: 'Rubik',
       ),
-      home: const TimerPage(),
+      home: const OverviewPage(),
     );
   }
 }
