@@ -31,9 +31,10 @@ class OverviewPage extends StatelessWidget {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
-            IconButton(onPressed: () {}, icon: Icon(Icons.pie_chart_outline)),
-            IconButton(onPressed: () {}, icon: Icon(Icons.add)),
-            IconButton(onPressed: () {}, icon: Icon(Icons.menu)),
+            IconButton(
+                onPressed: () {}, icon: const Icon(Icons.pie_chart_outline)),
+            IconButton(onPressed: () {}, icon: const Icon(Icons.add)),
+            IconButton(onPressed: () {}, icon: const Icon(Icons.menu)),
           ],
         ),
       ),

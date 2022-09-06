@@ -66,17 +66,17 @@ class _TimerViewState extends State<TimerView> {
                           child: Stack(
                             alignment: AlignmentDirectional.center,
                             children: [
+                              AnimatedProgressArc(
+                                size: size,
+                                strokeWidth: 20,
+                                controller: controller,
+                              ),
                               BlocBuilder<TimerBloc, TimerState>(
                                 builder: (context, state) {
                                   return TimerText(
                                       duration: state.duration,
                                       fontSize: size / 5);
                                 },
-                              ),
-                              AnimatedProgressArc(
-                                size: size,
-                                strokeWidth: 20,
-                                controller: controller,
                               ),
                             ],
                           ),
@@ -88,24 +88,28 @@ class _TimerViewState extends State<TimerView> {
               ),
               Expanded(
                 flex: 1,
-                child: Row(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: [
-                    IconButton(
+                child: Center(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      TextButton(
                         onPressed: () {
                           controller.start();
+                          context
+                              .read<TimerBloc>()
+                              .add(TimerStarted(duration: 0));
                         },
-                        icon: const Icon(
-                          Icons.play_arrow_rounded,
-                          color: Colors.black,
-                        )),
-                    IconButton(
-                        onPressed: () {
-                          controller.pause();
-                        },
-                        icon: const Icon(Icons.pause_rounded)),
-                  ],
+                        child: Text('Start'),
+                      ),
+                      IconButton(
+                          onPressed: () {
+                            controller.pause();
+                            context.read<TimerBloc>().add(TimerPaused());
+                          },
+                          icon: const Icon(Icons.pause_rounded)),
+                    ],
+                  ),
                 ),
               ),
             ],
