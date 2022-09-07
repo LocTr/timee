@@ -1,4 +1,6 @@
-class Task {
+import 'package:equatable/equatable.dart';
+
+class Task extends Equatable {
   final String title;
   final int targetTime;
   final int timeSpent;
@@ -9,6 +11,22 @@ class Task {
       required this.targetTime,
       required this.timeSpent,
       required this.isDone});
+
+  Task copyWith({
+    String? title,
+    int? targetTime,
+    int? timeSpent,
+    bool? isDone,
+  }) {
+    return Task(
+        title: title ?? this.title,
+        targetTime: targetTime ?? this.targetTime,
+        timeSpent: timeSpent ?? this.timeSpent,
+        isDone: isDone ?? this.isDone);
+  }
+
+  @override
+  List<Object?> get props => [title, targetTime, timeSpent, isDone];
 }
 
 class TaskImp {

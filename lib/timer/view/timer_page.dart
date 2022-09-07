@@ -8,19 +8,19 @@ import 'package:timee/utils/ticker.dart';
 class TimerPage extends StatelessWidget {
   const TimerPage({Key? key}) : super(key: key);
 
+  static Route<void> route({required Task initialTask}) {
+    return MaterialPageRoute(
+        builder: (context) => BlocProvider(
+              create: (context) => TimerBloc(
+                ticker: const Ticker(),
+                task: initialTask,
+              ),
+              child: const TimerPage(),
+            ));
+  }
+
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (_) => TimerBloc(
-          ticker: const Ticker(),
-          duration: 0,
-          task: const Task(
-            title: 'title',
-            isDone: false,
-            targetTime: 200,
-            timeSpent: 0,
-          )),
-      child: const TimerView(),
-    );
+    return const TimerView();
   }
 }

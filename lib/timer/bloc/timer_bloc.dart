@@ -19,9 +19,9 @@ class TimerBloc extends Bloc<TimerEvent, TimerState> {
 
   StreamSubscription<int>? _tickerSubscription;
 
-  TimerBloc({required Ticker ticker, required int duration, required this.task})
+  TimerBloc({required Ticker ticker, required this.task})
       : _ticker = ticker,
-        super(TimerInitial(duration: duration)) {
+        super(TimerInitial(duration: task.timeSpent)) {
     on<TimerStarted>(_onStarted);
     on<TimerPaused>(_onPaused);
     on<TimerResumed>(_onResumed);

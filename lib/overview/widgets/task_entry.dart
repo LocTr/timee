@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:timee/overview/models/task.dart';
+import 'package:timee/timer/view/timer_page.dart';
 
 class TaskEntry extends StatelessWidget {
   final Task task;
@@ -17,7 +18,9 @@ class TaskEntry extends StatelessWidget {
       borderOnForeground: true,
       elevation: 0.0,
       child: InkWell(
-        onTap: () {},
+        onTap: () {
+          Navigator.of(context).push<void>(TimerPage.route(initialTask: task));
+        },
         child: Column(
           children: [
             Row(

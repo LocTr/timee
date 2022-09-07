@@ -50,6 +50,7 @@ class _AnimatedProgressArcState extends State<AnimatedProgressArc>
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
+    _controller.animateTo(0.5, duration: const Duration(seconds: 1));
     widget.controller.start = () => _controller.forward();
     widget.controller.pause = () => _controller.stop();
   }

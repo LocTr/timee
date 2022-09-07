@@ -27,8 +27,8 @@ class _TimerViewState extends State<TimerView> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const ScreenHeader(
-                title: 'Do something',
+              ScreenHeader(
+                title: context.read<TimerBloc>().task.title,
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.end,
