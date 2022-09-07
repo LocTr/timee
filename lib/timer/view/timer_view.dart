@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:timee/overview/view/overview_page.dart';
 import 'package:timee/shared_widget/header.dart';
 import 'package:timee/timer/bloc/timer_bloc.dart';
 import 'package:timee/timer/widgets/timer_text.dart';
@@ -20,6 +21,7 @@ class _TimerViewState extends State<TimerView> {
 
   @override
   Widget build(BuildContext context) {
+    final currentTask = context.read<TimerBloc>().task;
     return Scaffold(
       body: SafeArea(
         child: Padding(
@@ -67,15 +69,18 @@ class _TimerViewState extends State<TimerView> {
                             alignment: AlignmentDirectional.center,
                             children: [
                               AnimatedProgressArc(
+                                duration: currentTask.targetTime,
+                                initialValue: currentTask.timeSpent /
+                                    currentTask.targetTime,
                                 size: size,
-                                strokeWidth: 20,
+                                strokeWidth: size / 20,
                                 controller: controller,
                               ),
                               BlocBuilder<TimerBloc, TimerState>(
                                 builder: (context, state) {
                                   return TimerText(
-                                      duration: state.duration,
-                                      fontSize: size / 6);
+                                      duration: state.currentTime,
+                                      fontSize: size / 7);
                                 },
                               ),
                             ],
@@ -96,18 +101,18 @@ class _TimerViewState extends State<TimerView> {
                       TextButton(
                         onPressed: () {
                           controller.start();
-                          context
-                              .read<TimerBloc>()
-                              .add(TimerStarted(duration: 0));
+                          context.read<TimerBloc>().add(
+                              TimerStarted(initialTime: currentTask.timeSpent));
                         },
-                        child: Text('Start'),
+                        child: const Text('Start'),
                       ),
-                      IconButton(
-                          onPressed: () {
-                            controller.pause();
-                            context.read<TimerBloc>().add(TimerPaused());
-                          },
-                          icon: const Icon(Icons.pause_rounded)),
+                      TextButton(
+                        onPressed: () {
+                          controller.pause();
+                          context.read<TimerBloc>().add(const TimerPaused());
+                        },
+                        child: const Text('Pause'),
+                      ),
                     ],
                   ),
                 ),

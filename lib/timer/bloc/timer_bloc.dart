@@ -21,7 +21,7 @@ class TimerBloc extends Bloc<TimerEvent, TimerState> {
 
   TimerBloc({required Ticker ticker, required this.task})
       : _ticker = ticker,
-        super(TimerInitial(duration: task.timeSpent)) {
+        super(TimerInitial(currentTime: task.timeSpent)) {
     on<TimerStarted>(_onStarted);
     on<TimerPaused>(_onPaused);
     on<TimerResumed>(_onResumed);
@@ -39,10 +39,10 @@ class TimerBloc extends Bloc<TimerEvent, TimerState> {
     TimerStarted event,
     Emitter<TimerState> emit,
   ) {
-    emit(TimerRunInProgress(duration: event.duration));
+    emit(TimerRunInProgress(currentTime: event.initialTime));
     _tickerSubscription?.cancel();
     _tickerSubscription = _ticker.tick().listen((duration) {
-      add(TimerTicked(duration: duration + 1));
+      add(TimerTicked(time: duration + 1));
     });
   }
 
@@ -52,7 +52,7 @@ class TimerBloc extends Bloc<TimerEvent, TimerState> {
   ) {
     if (state is TimerRunInProgress) {
       _tickerSubscription?.pause();
-      emit(TimerRunPause(duration: state.duration));
+      emit(TimerRunPause(currentTime: state.currentTime));
     }
   }
 
@@ -62,7 +62,7 @@ class TimerBloc extends Bloc<TimerEvent, TimerState> {
   ) {
     if (state is TimerRunPause) {
       _tickerSubscription?.resume();
-      emit(TimerRunInProgress(duration: state.duration));
+      emit(TimerRunInProgress(currentTime: state.currentTime));
     }
   }
 
@@ -70,7 +70,6 @@ class TimerBloc extends Bloc<TimerEvent, TimerState> {
     TimerTicked event,
     Emitter<TimerState> emit,
   ) {
-    print('tick at ' + event.duration.toString());
-    emit(TimerRunInProgress(duration: event.duration));
+    emit(TimerRunInProgress(currentTime: event.time));
   }
 }

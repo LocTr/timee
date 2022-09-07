@@ -8,16 +8,20 @@ class AnimatedProgressArcController {
 }
 
 class AnimatedProgressArc extends StatefulWidget {
-  const AnimatedProgressArc(
-      {Key? key,
-      required this.controller,
-      required this.size,
-      required this.strokeWidth})
-      : super(key: key);
+  const AnimatedProgressArc({
+    Key? key,
+    required this.controller,
+    required this.size,
+    required this.strokeWidth,
+    required this.duration,
+    this.initialValue = 0,
+  }) : super(key: key);
 
   final AnimatedProgressArcController controller;
   final double size;
   final double strokeWidth;
+  final int duration;
+  final double initialValue;
 
   @override
   State<AnimatedProgressArc> createState() => _AnimatedProgressArcState();
@@ -31,8 +35,9 @@ class _AnimatedProgressArcState extends State<AnimatedProgressArc>
   void initState() {
     _controller = AnimationController(
       vsync: this,
-      duration: const Duration(seconds: 30),
+      duration: Duration(seconds: widget.duration),
     );
+    _controller.value = widget.initialValue;
 
     // this create the same effect
     // _animation = CurvedAnimation(parent: _controller, curve: Curves.linear);
@@ -50,13 +55,13 @@ class _AnimatedProgressArcState extends State<AnimatedProgressArc>
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
-    _controller.animateTo(0.5, duration: const Duration(seconds: 1));
     widget.controller.start = () => _controller.forward();
     widget.controller.pause = () => _controller.stop();
   }
 
   @override
   Widget build(BuildContext context) {
+    print('rebuild this arc');
     return ProgressingArc(
       controller: _controller,
       color: Colors.blue,

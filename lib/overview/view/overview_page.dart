@@ -57,7 +57,7 @@ const tasks = <Task>[
   Task(
     title: 'Exercise',
     targetTime: 4800,
-    timeSpent: 1800,
+    timeSpent: 1200,
     isDone: false,
   ),
 ];

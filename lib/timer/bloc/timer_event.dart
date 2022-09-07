@@ -8,8 +8,8 @@ abstract class TimerEvent extends Equatable {
 }
 
 class TimerStarted extends TimerEvent {
-  const TimerStarted({required this.duration});
-  final int duration;
+  const TimerStarted({required this.initialTime});
+  final int initialTime;
 }
 
 class TimerPaused extends TimerEvent {
@@ -21,9 +21,9 @@ class TimerResumed extends TimerEvent {
 }
 
 class TimerTicked extends TimerEvent {
-  const TimerTicked({required this.duration});
-  final int duration;
+  const TimerTicked({required this.time});
+  final int time;
 
   @override
-  List<Object> get props => [duration];
+  List<Object> get props => [time];
 }
