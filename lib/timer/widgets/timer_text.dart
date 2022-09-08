@@ -9,21 +9,18 @@ class TimerText extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final hoursStr = (duration / 3600).floor().toString().padLeft(2, '0');
-    final minutesStr = (duration / 60).floor().toString().padLeft(2, '0');
-    final secondsStr = (duration % 60).floor().toString();
-    return Text('$hoursStr:$minutesStr:$secondsStr',
+    return Text(getTimeString(duration),
         style: TextStyle(
           fontFamily: 'PT Mono',
           fontSize: fontSize,
         ));
   }
 
-  String getTimeString() {
+  static String getTimeString(int duration) {
     final hour = (duration / 3600).floor();
     final hourStr = hour == 0 ? '' : '${hour.toString()}:';
-    final minuteStr = (duration / 60).floor().toString().padLeft(2, '0');
-    final secondStr = (duration % 60).floor().toString();
-    return '$hourStr:$minuteStr:$secondStr';
+    final minuteStr = '${(duration / 60).floor().toString().padLeft(2, '0')}:';
+    final secondStr = (duration % 60).floor().toString().padLeft(2, '0');
+    return '$hourStr$minuteStr$secondStr';
   }
 }

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:timee/overview/view/overview_page.dart';
 import 'package:timee/shared_widget/header.dart';
 import 'package:timee/timer/bloc/timer_bloc.dart';
+import 'package:timee/timer/widgets/control_section.dart';
 import 'package:timee/timer/widgets/timer_text.dart';
 
 import '../widgets/animated_progress_arc.dart';
@@ -91,32 +91,7 @@ class _TimerViewState extends State<TimerView> {
                   ),
                 ),
               ),
-              Expanded(
-                flex: 1,
-                child: Center(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: [
-                      TextButton(
-                        onPressed: () {
-                          controller.start();
-                          context.read<TimerBloc>().add(
-                              TimerStarted(initialTime: currentTask.timeSpent));
-                        },
-                        child: const Text('Start'),
-                      ),
-                      TextButton(
-                        onPressed: () {
-                          controller.pause();
-                          context.read<TimerBloc>().add(const TimerPaused());
-                        },
-                        child: const Text('Pause'),
-                      ),
-                    ],
-                  ),
-                ),
-              ),
+              ControlSection(controller: controller, currentTask: currentTask),
             ],
           ),
         ),

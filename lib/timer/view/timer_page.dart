@@ -12,7 +12,7 @@ class TimerPage extends StatelessWidget {
     return MaterialPageRoute(
         builder: (context) => BlocProvider(
               create: (context) => TimerBloc(
-                ticker: const Ticker(),
+                ticker: Ticker(initialTime: initialTask.timeSpent),
                 task: initialTask,
               ),
               child: const TimerPage(),

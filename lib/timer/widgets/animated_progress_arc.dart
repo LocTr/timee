@@ -69,4 +69,10 @@ class _AnimatedProgressArcState extends State<AnimatedProgressArc>
       strokeWidth: widget.strokeWidth,
     );
   }
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
 }
