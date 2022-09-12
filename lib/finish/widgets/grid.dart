@@ -37,6 +37,7 @@ class _GridState extends State<Grid> {
 
   @override
   Widget build(BuildContext context) {
+    print('rebuild');
     return Listener(
       onPointerDown: _detectTapedItem,
       onPointerMove: _detectTapedItem,
@@ -46,7 +47,7 @@ class _GridState extends State<Grid> {
         itemCount: 6,
         physics: NeverScrollableScrollPhysics(),
         gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-          crossAxisCount: 3,
+          crossAxisCount: 5,
           childAspectRatio: 1.0,
           crossAxisSpacing: 5.0,
           mainAxisSpacing: 5.0,

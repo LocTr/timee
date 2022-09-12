@@ -1,3 +1,5 @@
+import 'dart:collection';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 
@@ -9,65 +11,153 @@ class WeekdatePicker extends StatefulWidget {
 }
 
 class _WeekdatePickerState extends State<WeekdatePicker> {
-  final selectedIndexes = <int>{};
+  final _selectedIndexes = <int>{};
   final key = GlobalKey();
-  final _trackTaped = <_Foo>{};
+  bool isToggleOn = true;
+
+  int firstIndex = 0;
+  int lastIndex = 0;
 
   _detectTapedItem(PointerEvent event) {
-    final RenderBox box =
+    RenderBox box =
         key.currentContext!.findAncestorRenderObjectOfType<RenderBox>()!;
+
     final result = BoxHitTestResult();
     Offset local = box.globalToLocal(event.position);
     if (box.hitTest(result, position: local)) {
       for (final hit in result.path) {
         final target = hit.target;
-        if (target is _Foo && !_trackTaped.contains(target)) {
-          _trackTaped.add(target);
-          _selectedIndex(target.index);
+        if (target is _Foo) {
+          if (event is PointerDownEvent) {
+            firstIndex = target.index;
+            lastIndex = target.index;
+          }
+          if (!_selectedIndexes.contains(target.index)) {
+            _selectIndex(target.index);
+          }
         }
       }
     }
+    {
+      String output = '';
+      _selectedIndexes.forEach((element) {
+        output += element.toString();
+      });
+      print(output);
+    }
   }
 
-  _selectedIndex(int index) {
+  _unselectIndex(int index) {
     setState(() {
-      selectedIndexes.add(index);
+      _selectedIndexes.remove(index);
+    });
+  }
+
+  _selectIndex(int index) {
+    setState(() {
+      _selectedIndexes.add(index);
     });
   }
 
   _clearSelection(PointerUpEvent event) {
-    _trackTaped.clear();
     setState(() {
-      selectedIndexes.clear();
+      _selectedIndexes.clear();
     });
   }
 
   @override
   Widget build(BuildContext context) {
+    print('rebuild');
     return Listener(
       onPointerDown: _detectTapedItem,
       onPointerMove: _detectTapedItem,
-      onPointerUp: _clearSelection,
-      child: GridView.builder(
+      child: Row(
         key: key,
-        itemCount: 6,
-        physics: NeverScrollableScrollPhysics(),
-        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-          crossAxisCount: 3,
-          childAspectRatio: 1.0,
-          crossAxisSpacing: 5.0,
-          mainAxisSpacing: 5.0,
-        ),
-        itemBuilder: (context, index) {
-          return Foo(
-            index: index,
+        children: [
+          Foo(
+            index: 0,
             child: Container(
-              color: selectedIndexes.contains(index) ? Colors.red : Colors.blue,
+              width: 50,
+              height: 50,
+              color: _selectedIndexes.contains(0) ? Colors.red : Colors.blue,
+              child: const Text('M'),
             ),
-          );
-        },
+          ),
+          Foo(
+            index: 1,
+            child: Container(
+              width: 50,
+              height: 50,
+              color: _selectedIndexes.contains(1) ? Colors.red : Colors.blue,
+              child: Text('T'),
+            ),
+          ),
+          Foo(
+            index: 2,
+            child: Container(
+              width: 50,
+              height: 50,
+              color: _selectedIndexes.contains(2) ? Colors.red : Colors.blue,
+              child: Text('W'),
+            ),
+          ),
+          Foo(
+            index: 3,
+            child: Container(
+              width: 50,
+              height: 50,
+              color: _selectedIndexes.contains(3) ? Colors.red : Colors.blue,
+              child: Text('T'),
+            ),
+          ),
+          Foo(
+            index: 4,
+            child: Container(
+              width: 50,
+              height: 50,
+              color: _selectedIndexes.contains(4) ? Colors.red : Colors.blue,
+              child: Text('F'),
+            ),
+          ),
+          Foo(
+            index: 5,
+            child: Container(
+              width: 50,
+              height: 50,
+              color: _selectedIndexes.contains(5) ? Colors.red : Colors.blue,
+              child: Text('S'),
+            ),
+          ),
+          Foo(
+            index: 6,
+            child: Container(
+              width: 50,
+              height: 50,
+              color: _selectedIndexes.contains(6) ? Colors.red : Colors.blue,
+              child: Text('S'),
+            ),
+          ),
+        ],
       ),
     );
+  }
+}
+
+class Checkbox extends StatelessWidget {
+  const Checkbox({Key? key, required this.index, required this.content})
+      : super(key: key);
+
+  final int index;
+  final String content;
+  @override
+  Widget build(BuildContext context) {
+    return Foo(
+        index: index,
+        child: Container(
+          decoration: BoxDecoration(
+              shape: BoxShape.circle, border: Border.all(color: Colors.blue)),
+          child: Text(content),
+        ));
   }
 }
 
@@ -78,7 +168,7 @@ class Foo extends SingleChildRenderObjectWidget {
       : super(child: child, key: key);
 
   @override
-  _Foo createRenderObject(BuildContext context) {
+  createRenderObject(BuildContext context) {
     return _Foo(index);
   }
 
