@@ -56,7 +56,7 @@ class _TimerViewState extends State<TimerView> {
                 child: Padding(
                   padding: const EdgeInsets.all(24.0),
                   child: LayoutBuilder(
-                    builder: ((context, constraints) {
+                    builder: (context, constraints) {
                       double size =
                           (constraints.maxWidth > constraints.maxHeight)
                               ? constraints.maxHeight
@@ -87,7 +87,7 @@ class _TimerViewState extends State<TimerView> {
                           ),
                         ),
                       );
-                    }),
+                    },
                   ),
                 ),
               ),

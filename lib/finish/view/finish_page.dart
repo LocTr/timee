@@ -1,37 +1,73 @@
 import 'package:flutter/material.dart';
+import 'package:timee/finish/widgets/grid.dart';
+import 'package:timee/finish/widgets/weekdate_picker.dart';
+import 'package:timee/finish/widgets/wheel_picker.dart';
 
 class FinishPage extends StatelessWidget {
   const FinishPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    int hours = 0;
     return Scaffold(
       body: SafeArea(
-          child: Container(
-        width: 200,
-        height: 300,
-        child: ListWheelScrollView.useDelegate(
-          childDelegate: ListWheelChildBuilderDelegate(
-              builder: (BuildContext context, int index) {
-            return Container(
-              color: Colors.amber[100],
-              child: Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Text(
-                  (index % 10).toString(),
-                  style: TextStyle(fontFamily: 'PT Mono', fontSize: 80),
-                ),
-              ),
-            );
-          }),
-          physics: const FixedExtentScrollPhysics(),
-          itemExtent: 100,
-          onSelectedItemChanged: (value) {
-            //TODO: add listener
-          },
-          controller: FixedExtentScrollController(),
+        child: Column(
+          children: [
+            LayoutBuilder(
+              builder: (BuildContext context, BoxConstraints constraints) {
+                double width = constraints.maxWidth;
+                return Row(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    SizedBox(
+                      width: width / 4,
+                      height: 240,
+                      child: WheelPicker(
+                        itemCount: 25,
+                        onSelectedItemChange: (value) {
+                          hours = value;
+                        },
+                      ),
+                    ),
+                    const Text(
+                      ":",
+                      style:
+                          const TextStyle(fontFamily: 'PT Mono', fontSize: 60),
+                    ),
+                    SizedBox(
+                      width: width / 4,
+                      height: 240,
+                      child: WheelPicker(
+                        itemCount: 60,
+                        onSelectedItemChange: (value) {
+                          print(value);
+                        },
+                      ),
+                    ),
+                    const Text(
+                      ":",
+                      style:
+                          const TextStyle(fontFamily: 'PT Mono', fontSize: 60),
+                    ),
+                    SizedBox(
+                      width: width / 4,
+                      height: 240,
+                      child: WheelPicker(
+                        itemCount: 60,
+                        onSelectedItemChange: (value) {
+                          print(value);
+                        },
+                      ),
+                    ),
+                  ],
+                );
+              },
+            ),
+            Expanded(child: WeekdatePicker())
+          ],
         ),
-      )),
+      ),
     );
   }
 }
