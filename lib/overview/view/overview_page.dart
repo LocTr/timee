@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:timee/new_task/view/new_task_page.dart';
 import 'package:timee/overview/models/task.dart';
+import 'package:timee/report/view/report_page.dart';
 
 import '../widgets/task_entry.dart';
 
@@ -38,7 +39,10 @@ class OverviewPage extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
             IconButton(
-                onPressed: () {}, icon: const Icon(Icons.pie_chart_outline)),
+                onPressed: () {
+                  Navigator.push(context, ReportPage.route());
+                },
+                icon: const Icon(Icons.pie_chart_outline)),
             IconButton(
                 onPressed: () {
                   Navigator.push(context, NewTaskPage.route());

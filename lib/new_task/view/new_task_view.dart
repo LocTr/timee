@@ -14,10 +14,10 @@ class NewTaskView extends StatelessWidget {
           padding: const EdgeInsets.all(8.0),
           child: Column(
             children: [
-              ScreenHeader(
+              const ScreenHeader(
                 title: 'New task',
               ),
-              SizedBox(height: 24),
+              const SizedBox(height: 24),
               LayoutBuilder(
                 builder: (BuildContext context, BoxConstraints constraints) {
                   double width = constraints.maxWidth;
@@ -32,7 +32,6 @@ class NewTaskView extends StatelessWidget {
                           size: width / 6.5,
                           itemCount: 25,
                           onSelectedItemChange: (value) {
-                            print('asdfasdf');
                             hours = value;
                           },
                         ),
@@ -68,9 +67,7 @@ class NewTaskView extends StatelessWidget {
                         child: WheelPicker(
                           size: width / 6.5,
                           itemCount: 60,
-                          onSelectedItemChange: (value) {
-                            print(value);
-                          },
+                          onSelectedItemChange: (value) {},
                         ),
                       ),
                     ],
@@ -81,13 +78,22 @@ class NewTaskView extends StatelessWidget {
                 child: ListView(
                   children: [
                     Padding(
-                      padding: const EdgeInsets.all(8.0),
+                      padding: const EdgeInsets.all(24.0),
                       child: Column(
                         children: [
                           TextField(
                             decoration: InputDecoration(
                               hintText: 'Enter task name',
                             ),
+                          ),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.end,
+                            children: [
+                              TextButton(
+                                onPressed: () {},
+                                child: const Text('SAVE'),
+                              ),
+                            ],
                           ),
                         ],
                       ),
