@@ -15,6 +15,10 @@ class _WeekdatePickerState extends State<WeekdatePicker> {
   final key = GlobalKey();
   bool isToggleOn = true;
 
+  Set<int> get days {
+    return _selectedIndexes;
+  }
+
   int firstIndex = 0;
   int lastIndex = 0;
 
@@ -31,31 +35,44 @@ class _WeekdatePickerState extends State<WeekdatePicker> {
           if (event is PointerDownEvent) {
             firstIndex = target.index;
             lastIndex = target.index;
+            if (!_selectedIndexes.contains(target.index)) {
+              _selectIndexes([target.index]);
+              isToggleOn = true;
+            } else {
+              _unselectIndexes([target.index]);
+              isToggleOn = false;
+            }
           }
-          if (!_selectedIndexes.contains(target.index)) {
-            _selectIndex(target.index);
+          if (event is PointerMoveEvent) {
+            if (target.index != firstIndex) {}
           }
         }
       }
     }
-    {
-      String output = '';
-      _selectedIndexes.forEach((element) {
-        output += element.toString();
-      });
-      print(output);
-    }
   }
+  // {
+  //   String output = '';
+  //   _selectedIndexes.forEach((element) {
+  //     output += element.toString();
+  //   });
+  //   print(output);
+  // }
 
-  _unselectIndex(int index) {
+  _unselectIndexes(Iterable<int> indexes) {
     setState(() {
-      _selectedIndexes.remove(index);
+      _selectedIndexes.removeAll(indexes);
     });
   }
 
   _selectIndex(int index) {
     setState(() {
       _selectedIndexes.add(index);
+    });
+  }
+
+  _selectIndexes(Iterable<int> indexes) {
+    setState(() {
+      _selectedIndexes.addAll(indexes);
     });
   }
 

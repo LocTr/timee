@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:timee/finish/view/finish_page.dart';
+import 'package:timee/overview/view/overview_page.dart';
+
+import 'new_task/view/new_task_page.dart';
 
 void main() {
   runApp(const MyApp());
@@ -17,7 +20,7 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
         fontFamily: 'Rubik',
       ),
-      home: const FinishPage(),
+      home: const OverviewPage(),
     );
   }
 }
