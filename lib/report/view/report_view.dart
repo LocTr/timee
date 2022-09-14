@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:timee/report/widgets/chart/linechart.dart';
 import 'package:timee/shared_widget/header.dart';
 
 class ReportView extends StatelessWidget {
@@ -20,7 +21,7 @@ class ReportView extends StatelessWidget {
               LayoutBuilder(
                 builder: (BuildContext context, BoxConstraints constraints) {
                   double width = constraints.maxWidth;
-                  return Text('report view');
+                  return LineChartSample1();
                 },
               ),
             ],
