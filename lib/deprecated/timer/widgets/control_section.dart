@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:timee/overview/models/task.dart';
-import 'package:timee/timer/bloc/timer_bloc.dart';
+import 'package:timee/deprecated/timer/bloc/timer_bloc.dart';
+import 'package:timee/deprecated/model/task.dart';
 
 import 'animated_progress_arc.dart';
 

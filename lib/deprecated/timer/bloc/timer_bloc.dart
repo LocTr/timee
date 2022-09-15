@@ -2,7 +2,7 @@ import 'dart:async';
 
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
-import 'package:timee/overview/models/task.dart';
+import 'package:timee/deprecated/model/task.dart';
 import 'package:timee/utils/ticker.dart';
 
 part 'timer_event.dart';

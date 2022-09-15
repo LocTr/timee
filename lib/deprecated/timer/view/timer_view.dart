@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:timee/deprecated/timer/bloc/timer_bloc.dart';
+import 'package:timee/deprecated/timer/widgets/control_section.dart';
+import 'package:timee/deprecated/timer/widgets/timer_text.dart';
 import 'package:timee/shared_widget/header.dart';
-import 'package:timee/timer/bloc/timer_bloc.dart';
-import 'package:timee/timer/widgets/control_section.dart';
-import 'package:timee/timer/widgets/timer_text.dart';
 
 import '../widgets/animated_progress_arc.dart';
 

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:timee/new_task/view/new_task_page.dart';
-import 'package:timee/overview/models/task.dart';
+import 'package:timee/deprecated/model/task.dart';
 import 'package:timee/report/view/report_page.dart';
 
 import '../widgets/task_entry.dart';

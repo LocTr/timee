@@ -19,6 +19,15 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
         fontFamily: 'Rubik',
+        sliderTheme: const SliderThemeData(
+          showValueIndicator: ShowValueIndicator.always,
+          thumbShape: RoundSliderThumbShape(
+            elevation: 0.0,
+            enabledThumbRadius: 12,
+            pressedElevation: 0.0,
+          ),
+          trackHeight: 22,
+        ),
       ),
       home: const OverviewPage(),
     );
