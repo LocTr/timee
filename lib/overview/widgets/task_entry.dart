@@ -8,8 +8,7 @@ class TaskEntry extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final completePercentage =
-        (task.finishedTaskPoint / task.totalTaskPoint).toStringAsFixed(1);
+    final completePercentage = (task.finishedTaskPoint / task.totalTaskPoint);
     return Card(
       color: Color(0xFAFAFAFA),
       clipBehavior: Clip.antiAlias,
@@ -17,8 +16,7 @@ class TaskEntry extends StatelessWidget {
       elevation: 0.0,
       child: InkWell(
         onTap: () {
-          Navigator.of(context)
-              .push<void>(TaskDetailPage.route(initialTask: task));
+          Navigator.of(context).push<void>(TaskDetailPage.route(task: task));
         },
         child: Column(
           children: [
@@ -35,15 +33,16 @@ class TaskEntry extends StatelessWidget {
                     ),
                   ),
                 ),
-                Text('$completePercentage% completed'),
+                Text(
+                    '${(completePercentage * 100).toStringAsFixed(2)}% completed'),
                 const SizedBox(
                   width: 12,
                 ),
               ],
             ),
-            const LinearProgressIndicator(
+            LinearProgressIndicator(
               minHeight: 6.0,
-              value: 0.5,
+              value: completePercentage,
               backgroundColor: Colors.transparent,
               valueColor: AlwaysStoppedAnimation<Color>(Colors.yellow),
             ),

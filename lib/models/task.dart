@@ -1,4 +1,6 @@
-class Task {
+import 'package:equatable/equatable.dart';
+
+class Task extends Equatable {
   final String title;
   final DateTime createdDate;
   final DateTime completedDate;
@@ -7,7 +9,7 @@ class Task {
   final List<Group> groups;
   final List<Subtask> subtasks;
 
-  Task({
+  const Task({
     required this.title,
     required this.createdDate,
     required this.completedDate,
@@ -16,17 +18,34 @@ class Task {
     this.groups = const [],
     this.subtasks = const [],
   });
+
+  @override
+  List<Object?> get props => [
+        title,
+        createdDate,
+        completedDate,
+        totalTaskPoint,
+        finishedTaskPoint,
+        groups,
+        subtasks,
+      ];
 }
 
-class Subtask {
+class Subtask extends Equatable {
   final String title;
   final bool isDone;
 
   const Subtask({required this.title, required this.isDone});
+
+  @override
+  List<Object?> get props => [title, isDone];
 }
 
-class Group {
+class Group extends Equatable {
   final String title;
 
   const Group({required this.title});
+
+  @override
+  List<Object?> get props => [title];
 }
