@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:timee/models/task.dart';
 import 'package:timee/new_task/view/new_task_page.dart';
-import 'package:timee/deprecated/model/task.dart';
 import 'package:timee/report/view/report_page.dart';
 
 import '../widgets/task_entry.dart';
@@ -56,17 +56,19 @@ class OverviewPage extends StatelessWidget {
   }
 }
 
-const tasks = <Task>[
+final tasks = <Task>[
   Task(
-    title: 'Study java or c#',
-    targetTime: 36000,
-    timeSpent: 1800,
-    isDone: false,
+    title: 'Finish this app',
+    completedDate: DateTime.now().add(const Duration(days: 10)),
+    createdDate: DateTime.now(),
+    totalTaskPoint: 100,
+    finishedTaskPoint: 58,
   ),
   Task(
     title: 'Exercise',
-    targetTime: 4800,
-    timeSpent: 1200,
-    isDone: false,
+    createdDate: DateTime.now(),
+    completedDate: DateTime.now(),
+    totalTaskPoint: 5,
+    finishedTaskPoint: 0,
   ),
 ];

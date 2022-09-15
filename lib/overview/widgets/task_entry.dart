@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:timee/deprecated/timer/view/timer_page.dart';
-import 'package:timee/deprecated/model/task.dart';
+import 'package:timee/models/task.dart';
 import 'package:timee/task_detail/view/task_detail_page.dart';
 
 class TaskEntry extends StatelessWidget {
@@ -9,10 +8,8 @@ class TaskEntry extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final timeRemaining = task.targetTime - task.timeSpent;
-    final hoursStr = (timeRemaining / 3600).floor().toString();
-    final minutesStr =
-        (timeRemaining / 60 % 60).floor().toString().padLeft(2, '0');
+    final completePercentage =
+        (task.finishedTaskPoint / task.totalTaskPoint).toStringAsFixed(1);
     return Card(
       color: Color(0xFAFAFAFA),
       clipBehavior: Clip.antiAlias,
@@ -38,7 +35,7 @@ class TaskEntry extends StatelessWidget {
                     ),
                   ),
                 ),
-                Text('$hoursStr h $minutesStr m to go'),
+                Text('$completePercentage% completed'),
                 const SizedBox(
                   width: 12,
                 ),
