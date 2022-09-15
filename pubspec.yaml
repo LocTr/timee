@@ -37,6 +37,7 @@ dependencies:
   equatable: ^2.0.5
   bloc: ^8.1.0
   flutter_bloc: ^8.1.1
+  fl_chart: ^0.55.1
 
 dev_dependencies:
   flutter_test:
@@ -77,9 +78,21 @@ flutter:
   # list giving the asset and other descriptors for the font. For
   # example:
   fonts:
+    - family: PT Mono
+      fonts:
+        - asset: fonts/PTMono-Regular.ttf
     - family: Rubik
       fonts:
-        - asset: fonts/Rubik.tff
+        - asset: fonts/Rubik-Light.ttf
+          weight: 300
+        - asset: fonts/Rubik-Regular.ttf
+          weight: 400
+        - asset: fonts/Rubik-Medium.ttf
+          weight: 500
+        - asset: fonts/Rubik-SemiBold.ttf
+          weight: 600
+        - asset: fonts/Rubik-Bold.ttf
+          weight: 700
         - asset: fonts/Rubik-Italic.ttf
           style: italic
   # For details regarding fonts from package dependencies,
