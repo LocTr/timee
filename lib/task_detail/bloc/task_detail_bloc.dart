@@ -15,6 +15,7 @@ class TaskDetailBloc extends Bloc<TaskDetailEvent, TaskDetailState> {
           status: TaskStatus.initial,
         )) {
     on<TaskDetailProgressChanged>(_onTaskProgressed);
+    on<TaskDetailSubtaskChanged>(_onTaskDetailSubtaskChanged);
   }
 
   _onTaskProgressed(TaskDetailProgressChanged event, Emitter emit) {
@@ -32,7 +33,7 @@ class TaskDetailBloc extends Bloc<TaskDetailEvent, TaskDetailState> {
     TaskDetailSubtaskChanged event,
     Emitter<TaskDetailState> emit,
   ) async {
-    var newsubTasks = state.subtasks;
+    List<Subtask> newsubTasks = state.subtasks.toList();
     newsubTasks[event.index] = event.subtask;
     emit(state.copyWith(subtasks: newsubTasks));
   }

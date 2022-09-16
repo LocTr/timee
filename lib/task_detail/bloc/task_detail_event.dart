@@ -17,7 +17,7 @@ class TaskDetailProgressChanged extends TaskDetailEvent {
 }
 
 class TaskDetailSubtaskChanged extends TaskDetailEvent {
-  const TaskDetailSubtaskChanged(this.index, this.subtask);
+  const TaskDetailSubtaskChanged({required this.index, required this.subtask});
 
   final int index;
   final Subtask subtask;

@@ -37,6 +37,10 @@ class Subtask extends Equatable {
 
   const Subtask({required this.title, required this.isDone});
 
+  Subtask copyWith({String? title, bool? isDone}) {
+    return Subtask(title: title ?? this.title, isDone: isDone ?? this.isDone);
+  }
+
   @override
   List<Object?> get props => [title, isDone];
 }

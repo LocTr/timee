@@ -5,6 +5,7 @@ import 'package:timee/shared_widget/header.dart';
 import 'package:timee/task_detail/bloc/task_detail_bloc.dart';
 import 'package:timee/task_detail/widgets/subtask_entry.dart';
 import 'package:timee/task_detail/widgets/task_slider.dart';
+import 'package:collection/collection.dart';
 
 class TaskDetailView extends StatefulWidget {
   const TaskDetailView({Key? key}) : super(key: key);
@@ -56,12 +57,20 @@ class _TaskDetailViewState extends State<TaskDetailView> {
                 builder: (context, state) {
                   return Expanded(
                     child: ListView(
-                        children: state.subtasks
-                            .asMap()
-                            .map((key, value) =>
-                                Subtask(title: value.title, isDone: false))
-                            .values
-                            .toList()),
+                      children: state.subtasks
+                          .mapIndexed((index, subtask) => SubtaskEntry(
+                              content: subtask.title,
+                              isDone: subtask.isDone,
+                              onChanged: (value) {
+                                context
+                                    .read<TaskDetailBloc>()
+                                    .add(TaskDetailSubtaskChanged(
+                                      index: index,
+                                      subtask: subtask.copyWith(isDone: value),
+                                    ));
+                              }))
+                          .toList(),
+                    ),
                   );
                 },
               )
