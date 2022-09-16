@@ -19,7 +19,21 @@ class TaskDetailBloc extends Bloc<TaskDetailEvent, TaskDetailState> {
 
   _onTaskProgressed(TaskDetailProgressChanged event, Emitter emit) {
     if (event.taskPoint != state.finishedTaskPoint) {
-      emit(state.copyWith(finishedTaskPoint: event.taskPoint));
+      emit(state.copyWith(
+        finishedTaskPoint: event.taskPoint,
+        status: (task.finishedTaskPoint == event.taskPoint)
+            ? TaskStatus.initial
+            : TaskStatus.progressed,
+      ));
     }
+  }
+
+  _onTaskDetailSubtaskChanged(
+    TaskDetailSubtaskChanged event,
+    Emitter<TaskDetailState> emit,
+  ) async {
+    var newsubTasks = state.subtasks;
+    newsubTasks[event.index] = event.subtask;
+    emit(state.copyWith(subtasks: newsubTasks));
   }
 }

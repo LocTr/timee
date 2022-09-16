@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:timee/models/task.dart';
 import 'package:timee/shared_widget/header.dart';
 import 'package:timee/task_detail/bloc/task_detail_bloc.dart';
+import 'package:timee/task_detail/widgets/subtask_entry.dart';
 import 'package:timee/task_detail/widgets/task_slider.dart';
 
 class TaskDetailView extends StatefulWidget {
@@ -46,29 +48,27 @@ class _TaskDetailViewState extends State<TaskDetailView> {
                   ),
                 ],
               ),
-              Spacer(),
+              const Padding(
+                padding: EdgeInsets.all(16.0),
+                child: TaskSlider(),
+              ),
               BlocBuilder<TaskDetailBloc, TaskDetailState>(
                 builder: (context, state) {
-                  // TODO: consider smooooothen this slider or animation of some sort
-                  return Slider(
-                      value: state.finishedTaskPoint.toDouble(),
-                      max: BlocProvider.of<TaskDetailBloc>(context)
-                          .task
-                          .totalTaskPoint
-                          .toDouble(),
-                      label: '${state.finishedTaskPoint.toInt()}',
-                      onChanged: (value) {
-                        BlocProvider.of<TaskDetailBloc>(context).add(
-                            TaskDetailProgressChanged(
-                                taskPoint: value.toInt()));
-                      });
+                  return Expanded(
+                    child: ListView(
+                        children: state.subtasks
+                            .asMap()
+                            .map((key, value) =>
+                                Subtask(title: value.title, isDone: false))
+                            .values
+                            .toList()),
+                  );
                 },
-              ),
+              )
             ],
           ),
         ),
       ),
     );
-    ;
   }
 }

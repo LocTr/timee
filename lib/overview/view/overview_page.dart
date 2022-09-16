@@ -63,12 +63,22 @@ final tasks = <Task>[
     createdDate: DateTime.now(),
     totalTaskPoint: 100,
     finishedTaskPoint: 58,
+    subtasks: const [
+      Subtask(title: 'design UX/UI', isDone: true),
+      Subtask(title: 'code logic', isDone: false),
+      Subtask(title: 'cleanup later', isDone: false),
+    ],
   ),
   Task(
-    title: 'Exercise',
-    createdDate: DateTime.now(),
-    completedDate: DateTime.now(),
-    totalTaskPoint: 5,
-    finishedTaskPoint: 0,
-  ),
+      title: 'Exercise',
+      createdDate: DateTime.now(),
+      completedDate: DateTime.now(),
+      totalTaskPoint: 5,
+      finishedTaskPoint: 0,
+      subtasks: const [
+        Subtask(title: 'push up x50', isDone: true),
+        Subtask(title: 'pull up x 30', isDone: false),
+        Subtask(title: 'band raise x 40', isDone: false),
+        Subtask(title: 'more push up x50 ', isDone: false),
+      ]),
 ];
