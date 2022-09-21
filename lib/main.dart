@@ -7,7 +7,7 @@ import 'package:timee/app.dart';
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
-  final tasksApi = await TaskApi.create((Hive.initFlutter('box')));
+  final tasksApi = await TaskApi.create((await Hive.initFlutter('box')));
 
   final tasksRepo = TasksRepo(taskApi: tasksApi);
 
