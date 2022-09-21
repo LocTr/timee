@@ -17,11 +17,10 @@ class TaskDetailProgressChanged extends TaskDetailEvent {
 }
 
 class TaskDetailSubtaskChanged extends TaskDetailEvent {
-  const TaskDetailSubtaskChanged({required this.index, required this.subtask});
+  const TaskDetailSubtaskChanged({required this.subtasks});
 
-  final int index;
-  final Subtask subtask;
+  final List<Subtask> subtasks;
 
   @override
-  List<Object> get props => [index, subtask];
+  List<Object> get props => [subtasks];
 }

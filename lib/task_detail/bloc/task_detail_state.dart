@@ -1,31 +1,14 @@
 part of 'task_detail_bloc.dart';
 
-enum TaskStatus {
-  initial,
-  progressed,
-}
-
 class TaskDetailState extends Equatable {
-  final int finishedTaskPoint;
-  final List<Subtask> subtasks;
-  final TaskStatus status;
+  final Task task;
 
-  const TaskDetailState(
-      {required this.finishedTaskPoint,
-      required this.subtasks,
-      required this.status});
+  const TaskDetailState({required this.task});
 
-  TaskDetailState copyWith({
-    int? finishedTaskPoint,
-    List<Subtask>? subtasks,
-    TaskStatus? status,
-  }) {
-    return TaskDetailState(
-        finishedTaskPoint: finishedTaskPoint ?? this.finishedTaskPoint,
-        subtasks: subtasks ?? this.subtasks,
-        status: status ?? this.status);
+  bool get isComplete {
+    return task.finishedTaskPoint == task.totalTaskPoint ? true : false;
   }
 
   @override
-  List<Object> get props => [finishedTaskPoint, subtasks, status];
+  List<Object> get props => [task];
 }

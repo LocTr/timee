@@ -53,9 +53,10 @@ class _TaskDetailViewState extends State<TaskDetailView> {
               ),
               BlocBuilder<TaskDetailBloc, TaskDetailState>(
                 builder: (context, state) {
+                  final subtasks = state.task.subtasks;
                   return Expanded(
                     child: ListView(
-                      children: state.subtasks
+                      children: subtasks
                           .mapIndexed((index, subtask) => SubtaskEntry(
                               content: subtask.title,
                               isDone: subtask.isDone,
@@ -63,8 +64,8 @@ class _TaskDetailViewState extends State<TaskDetailView> {
                                 context
                                     .read<TaskDetailBloc>()
                                     .add(TaskDetailSubtaskChanged(
-                                      index: index,
-                                      subtask: subtask.copyWith(isDone: value),
+                                      subtasks: subtasks.toList()
+                                        ..[index].copyWith(isDone: value),
                                     ));
                               }))
                           .toList(),

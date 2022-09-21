@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:task_api/models/task.dart';
+import 'package:tasks_repo/tasks_repo.dart';
 import 'package:timee/task_detail/bloc/task_detail_bloc.dart';
 import 'package:timee/task_detail/view/task_detail_view.dart';
 
@@ -8,7 +9,10 @@ class TaskDetailPage extends StatelessWidget {
   static Route<void> route({required Task task}) {
     return MaterialPageRoute(
         builder: (context) => BlocProvider<TaskDetailBloc>(
-              create: (context) => TaskDetailBloc(task: task),
+              create: (context) => TaskDetailBloc(
+                tasksRepo: context.read<TasksRepo>(),
+                task: task,
+              ),
               child: const TaskDetailPage(),
             ));
   }
