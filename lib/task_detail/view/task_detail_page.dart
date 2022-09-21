@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:timee/models/task.dart';
+import 'package:task_api/models/task.dart';
 import 'package:timee/task_detail/bloc/task_detail_bloc.dart';
 import 'package:timee/task_detail/view/task_detail_view.dart';
 

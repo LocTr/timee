@@ -1,35 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:timee/finish/view/finish_page.dart';
-import 'package:timee/overview/view/overview_page.dart';
+import 'package:hive_flutter/hive_flutter.dart';
+import 'package:task_api/task_api.dart';
+import 'package:tasks_repo/tasks_repo.dart';
+import 'package:timee/app.dart';
 
-import 'new_task/view/new_task_page.dart';
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
 
-void main() {
-  runApp(const MyApp());
-}
+  final tasksApi = await TaskApi.create((Hive.initFlutter('box')));
 
-class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
+  final tasksRepo = TasksRepo(taskApi: tasksApi);
 
-  // This widget is the root of your application.
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-        fontFamily: 'Rubik',
-        sliderTheme: const SliderThemeData(
-          showValueIndicator: ShowValueIndicator.always,
-          thumbShape: RoundSliderThumbShape(
-            elevation: 0.0,
-            enabledThumbRadius: 12,
-            pressedElevation: 0.0,
-          ),
-          trackHeight: 22,
-        ),
-      ),
-      home: const OverviewPage(),
-    );
-  }
+  runApp(App(tasksRepo: tasksRepo));
 }

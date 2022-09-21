@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:timee/models/task.dart';
+import 'package:task_api/models/task.dart';
 import 'package:timee/new_task/view/new_task_page.dart';
 import 'package:timee/report/view/report_page.dart';
 
@@ -63,7 +63,7 @@ final tasks = <Task>[
     createdDate: DateTime.now(),
     totalTaskPoint: 100,
     finishedTaskPoint: 58,
-    subtasks: const [
+    subtasks: [
       Subtask(title: 'design UX/UI', isDone: true),
       Subtask(title: 'code logic', isDone: false),
       Subtask(title: 'cleanup later', isDone: false),
@@ -75,7 +75,7 @@ final tasks = <Task>[
       completedDate: DateTime.now(),
       totalTaskPoint: 5,
       finishedTaskPoint: 0,
-      subtasks: const [
+      subtasks: [
         Subtask(title: 'push up x50', isDone: true),
         Subtask(title: 'pull up x 30', isDone: false),
         Subtask(title: 'band raise x 40', isDone: false),

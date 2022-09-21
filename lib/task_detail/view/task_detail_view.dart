@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:timee/models/task.dart';
 import 'package:timee/shared_widget/header.dart';
 import 'package:timee/task_detail/bloc/task_detail_bloc.dart';
 import 'package:timee/task_detail/widgets/subtask_entry.dart';
@@ -19,7 +18,6 @@ class _TaskDetailViewState extends State<TaskDetailView> {
 
   @override
   Widget build(BuildContext context) {
-    print('rebuilt');
     return Scaffold(
       body: SafeArea(
         child: Padding(

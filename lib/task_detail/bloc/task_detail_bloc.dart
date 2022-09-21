@@ -1,6 +1,6 @@
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
-import 'package:timee/models/task.dart';
+import 'package:task_api/models/task.dart';
 
 part 'task_detail_event.dart';
 part 'task_detail_state.dart';

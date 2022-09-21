@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:timee/models/task.dart';
+import 'package:task_api/models/task.dart';
 import 'package:timee/task_detail/view/task_detail_page.dart';
 
 class TaskEntry extends StatelessWidget {
