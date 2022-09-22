@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:timee/new_task/bloc/new_task_bloc.dart';
 import 'package:timee/new_task/view/new_task_view.dart';
 
 class NewTaskPage extends StatelessWidget {
@@ -6,7 +8,10 @@ class NewTaskPage extends StatelessWidget {
 
   static Route<void> route() {
     return MaterialPageRoute(
-      builder: (context) => const NewTaskView(),
+      builder: (context) => BlocProvider(
+        create: (context) => NewTaskBloc(),
+        child: const NewTaskView(),
+      ),
     );
   }
 

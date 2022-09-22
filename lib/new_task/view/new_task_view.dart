@@ -1,10 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:timee/new_task/widgets/point_picker.dart';
 import 'package:timee/new_task/widgets/wheel_picker.dart';
 import 'package:timee/shared_widget/header.dart';
 
-class NewTaskView extends StatelessWidget {
+class NewTaskView extends StatefulWidget {
   const NewTaskView({Key? key}) : super(key: key);
 
+  @override
+  State<NewTaskView> createState() => _NewTaskViewState();
+}
+
+class _NewTaskViewState extends State<NewTaskView> {
+  var _titleTxtController = TextEditingController();
   @override
   Widget build(BuildContext context) {
     int hours = 0;
@@ -82,10 +89,12 @@ class NewTaskView extends StatelessWidget {
                       child: Column(
                         children: [
                           TextField(
-                            decoration: InputDecoration(
+                            controller: _titleTxtController,
+                            decoration: const InputDecoration(
                               hintText: 'Enter task name',
                             ),
                           ),
+                          PointPicker(),
                           Row(
                             mainAxisAlignment: MainAxisAlignment.end,
                             children: [

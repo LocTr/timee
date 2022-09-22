@@ -34,7 +34,7 @@ class _TaskSliderState extends State<TaskSlider> {
           onChanged: (value) {
             setState(() {
               isChanged = true;
-              sliderValue;
+              sliderValue = value;
             });
           },
           onChangeEnd: (value) {
