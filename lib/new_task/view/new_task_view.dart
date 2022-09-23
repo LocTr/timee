@@ -60,7 +60,11 @@ class _NewTaskViewState extends State<NewTaskView> {
                               return TextButton(
                                 onPressed: (state.task.title.isNotEmpty &&
                                         state.task.totalTaskPoint != 0)
-                                    ? () {}
+                                    ? () {
+                                        context
+                                            .read<NewTaskBloc>()
+                                            .add(const TaskSaved());
+                                      }
                                     : null,
                                 child: const Text('SAVE'),
                               );

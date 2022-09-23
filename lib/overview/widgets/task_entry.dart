@@ -26,9 +26,8 @@ class TaskEntry extends StatelessWidget {
                   child: ListTile(
                     title: Text(task.title),
                     subtitle: Wrap(
-                      children: const [
-                        Text('this'),
-                        Text('is'),
+                      children: [
+                        Text(task.id.isEmpty ? 'empty' : task.id),
                       ],
                     ),
                   ),

@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:timee/shared_widget/header.dart';
 import 'package:timee/task_detail/bloc/task_detail_bloc.dart';
 import 'package:timee/task_detail/widgets/subtask_entry.dart';
-import 'package:timee/task_detail/widgets/task_slider.dart';
+import 'package:timee/task_detail/widgets/task_point_slider.dart';
 import 'package:collection/collection.dart';
 
 class TaskDetailView extends StatefulWidget {
@@ -49,7 +49,7 @@ class _TaskDetailViewState extends State<TaskDetailView> {
               ),
               const Padding(
                 padding: EdgeInsets.all(16.0),
-                child: TaskSlider(),
+                child: TaskPointSlider(),
               ),
               BlocBuilder<TaskDetailBloc, TaskDetailState>(
                 builder: (context, state) {

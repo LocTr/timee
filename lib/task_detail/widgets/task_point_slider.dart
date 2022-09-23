@@ -2,17 +2,19 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:timee/task_detail/bloc/task_detail_bloc.dart';
 
-class TaskSlider extends StatefulWidget {
-  const TaskSlider({
+class TaskPointSlider extends StatefulWidget {
+  const TaskPointSlider({
     Key? key,
   }) : super(key: key);
 
   @override
-  State<TaskSlider> createState() => _TaskSliderState();
+  State<TaskPointSlider> createState() => _TaskPointSliderState();
 }
 
-class _TaskSliderState extends State<TaskSlider> {
+class _TaskPointSliderState extends State<TaskPointSlider> {
   double sliderValue = 0;
+
+  late double maxValue;
 
   bool isChanged = false;
 
@@ -20,6 +22,7 @@ class _TaskSliderState extends State<TaskSlider> {
   void initState() {
     var bloc = context.read<TaskDetailBloc>();
     sliderValue = bloc.state.task.finishedTaskPoint.toDouble();
+    maxValue = bloc.state.task.totalTaskPoint.toDouble();
     super.initState();
   }
 
@@ -27,10 +30,17 @@ class _TaskSliderState extends State<TaskSlider> {
   Widget build(BuildContext context) {
     return Column(
       children: [
+        Row(
+          children: [
+            const Spacer(),
+            Text('${sliderValue.toInt()}/$maxValue',
+                style: TextStyle(color: Theme.of(context).primaryColor)),
+            const SizedBox(width: 24),
+          ],
+        ),
         Slider(
           value: sliderValue,
-          max: 100,
-          label: sliderValue.toInt().toString(),
+          max: maxValue,
           onChanged: (value) {
             setState(() {
               isChanged = true;
