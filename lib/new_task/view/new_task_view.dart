@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:timee/new_task/bloc/new_task_bloc.dart';
 import 'package:timee/new_task/widgets/point_picker.dart';
-import 'package:timee/new_task/widgets/wheel_picker.dart';
 import 'package:timee/shared_widget/header.dart';
 
 class NewTaskView extends StatefulWidget {
@@ -11,10 +12,8 @@ class NewTaskView extends StatefulWidget {
 }
 
 class _NewTaskViewState extends State<NewTaskView> {
-  var _titleTxtController = TextEditingController();
   @override
   Widget build(BuildContext context) {
-    int hours = 0;
     return Scaffold(
       body: SafeArea(
         child: Padding(
@@ -25,89 +24,52 @@ class _NewTaskViewState extends State<NewTaskView> {
                 title: 'New task',
               ),
               const SizedBox(height: 24),
-              LayoutBuilder(
-                builder: (BuildContext context, BoxConstraints constraints) {
-                  double width = constraints.maxWidth;
-                  return Row(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    mainAxisAlignment: MainAxisAlignment.center,
+              Expanded(
+                child: Padding(
+                  padding: const EdgeInsets.all(24.0),
+                  child: Column(
                     children: [
                       SizedBox(
-                        width: width / 5,
-                        height: width / 2,
-                        child: WheelPicker(
-                          size: width / 6.5,
-                          itemCount: 25,
-                          onSelectedItemChange: (value) {
-                            hours = value;
-                          },
-                        ),
-                      ),
-                      Text(
-                        ":",
-                        style: TextStyle(
-                          fontFamily: 'PT Mono',
-                          fontSize: width / 6.5,
-                        ),
-                      ),
-                      SizedBox(
-                        width: width / 5,
-                        height: width / 2,
-                        child: WheelPicker(
-                          size: width / 6.5,
-                          itemCount: 60,
-                          onSelectedItemChange: (value) {
-                            print(value);
-                          },
-                        ),
-                      ),
-                      Text(
-                        ":",
-                        style: TextStyle(
-                          fontFamily: 'PT Mono',
-                          fontSize: width / 6.5,
-                        ),
-                      ),
-                      SizedBox(
-                        width: width / 5,
-                        height: width / 2,
-                        child: WheelPicker(
-                          size: width / 6.5,
-                          itemCount: 60,
-                          onSelectedItemChange: (value) {},
-                        ),
-                      ),
-                    ],
-                  );
-                },
-              ),
-              Expanded(
-                child: ListView(
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.all(24.0),
-                      child: Column(
-                        children: [
-                          TextField(
-                            controller: _titleTxtController,
-                            decoration: const InputDecoration(
-                              hintText: 'Enter task name',
-                            ),
-                          ),
-                          PointPicker(),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.end,
-                            children: [
-                              TextButton(
-                                onPressed: () {},
-                                child: const Text('SAVE'),
+                        height: 90,
+                        child: BlocBuilder<NewTaskBloc, NewTaskState>(
+                          builder: (context, state) {
+                            return TextField(
+                              decoration: const InputDecoration(
+                                hintText: 'Enter task name',
                               ),
-                            ],
+                              onChanged: (value) {
+                                context
+                                    .read<NewTaskBloc>()
+                                    .add(TaskDetailChange(
+                                        task: state.task.copyWith(
+                                      title: value,
+                                    )));
+                              },
+                            );
+                          },
+                        ),
+                      ),
+                      const SizedBox(height: 24),
+                      const PointPicker(),
+                      const Spacer(),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.end,
+                        children: [
+                          BlocBuilder<NewTaskBloc, NewTaskState>(
+                            builder: (context, state) {
+                              return TextButton(
+                                onPressed: (state.task.title.isNotEmpty &&
+                                        state.task.totalTaskPoint != 0)
+                                    ? () {}
+                                    : null,
+                                child: const Text('SAVE'),
+                              );
+                            },
                           ),
                         ],
                       ),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
               ),
             ],

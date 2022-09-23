@@ -15,3 +15,7 @@ class TaskDetailChange extends NewTaskEvent {
   @override
   List<Object> get props => [task];
 }
+
+class TaskSaved extends NewTaskEvent {
+  const TaskSaved();
+}
