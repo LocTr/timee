@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:timee/new_task/bloc/new_task_bloc.dart';
+import 'package:timee/new_task/widgets/new_subtasks.dart';
 import 'package:timee/new_task/widgets/point_picker.dart';
 import 'package:timee/shared_widget/header.dart';
 
@@ -27,7 +28,8 @@ class _NewTaskViewState extends State<NewTaskView> {
               Expanded(
                 child: Padding(
                   padding: const EdgeInsets.all(24.0),
-                  child: Column(
+                  child: ListView(
+                    physics: BouncingScrollPhysics(),
                     children: [
                       SizedBox(
                         height: 90,
@@ -51,30 +53,34 @@ class _NewTaskViewState extends State<NewTaskView> {
                       ),
                       const SizedBox(height: 24),
                       const PointPicker(),
-                      const Spacer(),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.end,
-                        children: [
-                          BlocBuilder<NewTaskBloc, NewTaskState>(
-                            builder: (context, state) {
-                              return TextButton(
-                                onPressed: (state.task.title.isNotEmpty &&
-                                        state.task.totalTaskPoint != 0)
-                                    ? () {
-                                        context
-                                            .read<NewTaskBloc>()
-                                            .add(const TaskSaved());
-                                      }
-                                    : null,
-                                child: const Text('SAVE'),
-                              );
-                            },
-                          ),
-                        ],
-                      ),
+                      const NewSubtasks(),
                     ],
                   ),
                 ),
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: [
+                  BlocBuilder<NewTaskBloc, NewTaskState>(
+                    builder: (context, state) {
+                      return Padding(
+                        padding: const EdgeInsets.only(
+                            bottom: 24.0, left: 24.0, right: 24.0),
+                        child: TextButton(
+                          onPressed: (state.task.title.isNotEmpty &&
+                                  state.task.totalTaskPoint != 0)
+                              ? () {
+                                  context
+                                      .read<NewTaskBloc>()
+                                      .add(const TaskSaved());
+                                }
+                              : null,
+                          child: const Text('SAVE'),
+                        ),
+                      );
+                    },
+                  ),
+                ],
               ),
             ],
           ),
