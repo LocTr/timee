@@ -11,7 +11,7 @@ class TaskDetailPage extends StatelessWidget {
         builder: (context) => BlocProvider<TaskDetailBloc>(
               create: (context) => TaskDetailBloc(
                 tasksRepo: context.read<TasksRepo>(),
-                task: task,
+                taskInitial: task,
               ),
               child: const TaskDetailPage(),
             ));

@@ -26,7 +26,8 @@ class _TaskDetailViewState extends State<TaskDetailView> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               ScreenHeader(
-                title: BlocProvider.of<TaskDetailBloc>(context).task.title,
+                title:
+                    BlocProvider.of<TaskDetailBloc>(context).taskInitial.title,
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.end,

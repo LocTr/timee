@@ -7,6 +7,10 @@ abstract class TaskDetailEvent extends Equatable {
   List<Object> get props => [];
 }
 
+class TaskDetailProgressConfirmed extends TaskDetailEvent {
+  const TaskDetailProgressConfirmed();
+}
+
 class TaskDetailProgressChanged extends TaskDetailEvent {
   const TaskDetailProgressChanged({required this.taskPoint});
 

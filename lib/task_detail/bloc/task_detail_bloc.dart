@@ -7,24 +7,31 @@ part 'task_detail_event.dart';
 part 'task_detail_state.dart';
 
 class TaskDetailBloc extends Bloc<TaskDetailEvent, TaskDetailState> {
-  TaskDetailBloc({required this.task, required TasksRepo tasksRepo})
+  TaskDetailBloc({required this.taskInitial, required TasksRepo tasksRepo})
       : _tasksRepo = tasksRepo,
-        super(TaskDetailState(task: task)) {
+        super(TaskDetailState(task: taskInitial)) {
     on<TaskDetailProgressChanged>(_onTaskProgressed);
     on<TaskDetailSubtaskChanged>(_onTaskDetailSubtaskChanged);
+    on<TaskDetailProgressConfirmed>(_onTaskDetailProgressConfirmed);
   }
 
-  final Task task;
+  final Task taskInitial;
 
   final TasksRepo _tasksRepo;
 
   _onTaskProgressed(TaskDetailProgressChanged event, Emitter emit) async {
     if (event.taskPoint != state.task.finishedTaskPoint) {
       Task newTask = state.task.copyWith(finishedTaskPoint: event.taskPoint);
-      await _tasksRepo.saveTask(newTask);
 
       emit(TaskDetailState(task: newTask));
     }
+  }
+
+  _onTaskDetailProgressConfirmed(
+    TaskDetailProgressConfirmed event,
+    Emitter<TaskDetailState> emit,
+  ) {
+    _tasksRepo.saveTask(state.task);
   }
 
   _onTaskDetailSubtaskChanged(
