@@ -61,11 +61,14 @@ class _TaskDetailViewState extends State<TaskDetailView> {
                               content: subtask.title,
                               isDone: subtask.isDone,
                               onChanged: (value) {
+                                final subtask =
+                                    subtasks[index].copyWith(isDone: value);
+                                final newSubtask = subtasks.toList()
+                                  ..[index] = subtask;
                                 context
                                     .read<TaskDetailBloc>()
                                     .add(TaskDetailSubtaskChanged(
-                                      subtasks: subtasks.toList()
-                                        ..[index].copyWith(isDone: value),
+                                      subtasks: newSubtask,
                                     ));
                               }))
                           .toList(),
