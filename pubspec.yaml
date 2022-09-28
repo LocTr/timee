@@ -40,9 +40,13 @@ dependencies:
   fl_chart: ^0.55.1
   collection: ^1.16.0
   tasks_repo:
-    path: ../tasks_repo
+    git:
+      url: https://github.com/LocTr/tasks-repo
+      ref: main
   task_api:
-    path: ../task_api
+    git:
+      url: https://github.com/LocTr/task_api
+      ref: main
   hive: ^2.2.3
   hive_flutter: ^1.1.0
   uuid: ^3.0.6
