@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:timee/shared_widget/header.dart';
-import 'package:timee/task_detail/widgets/task_slider.dart';
+import 'package:timee/task_detail/bloc/task_detail_bloc.dart';
+import 'package:timee/task_detail/widgets/subtask_entry.dart';
+import 'package:timee/task_detail/widgets/task_point_slider.dart';
+import 'package:collection/collection.dart';
 
 class TaskDetailView extends StatefulWidget {
   const TaskDetailView({Key? key}) : super(key: key);
@@ -14,7 +18,6 @@ class _TaskDetailViewState extends State<TaskDetailView> {
 
   @override
   Widget build(BuildContext context) {
-    print('rebuilt');
     return Scaffold(
       body: SafeArea(
         child: Padding(
@@ -23,7 +26,8 @@ class _TaskDetailViewState extends State<TaskDetailView> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               ScreenHeader(
-                title: 'Title',
+                title:
+                    BlocProvider.of<TaskDetailBloc>(context).taskInitial.title,
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.end,
@@ -44,21 +48,39 @@ class _TaskDetailViewState extends State<TaskDetailView> {
                   ),
                 ],
               ),
-              Spacer(),
-              Slider(
-                  value: progress,
-                  max: 100,
-                  label: '$progress',
-                  onChanged: (value) {
-                    setState(() {
-                      progress = value;
-                    });
-                  }),
+              const Padding(
+                padding: EdgeInsets.all(16.0),
+                child: TaskPointSlider(),
+              ),
+              BlocBuilder<TaskDetailBloc, TaskDetailState>(
+                builder: (context, state) {
+                  final subtasks = state.task.subtasks;
+                  return Expanded(
+                    child: ListView(
+                      children: subtasks
+                          .mapIndexed((index, subtask) => SubtaskEntry(
+                              content: subtask.title,
+                              isDone: subtask.isDone,
+                              onChanged: (value) {
+                                final subtask =
+                                    subtasks[index].copyWith(isDone: value);
+                                final newSubtask = subtasks.toList()
+                                  ..[index] = subtask;
+                                context
+                                    .read<TaskDetailBloc>()
+                                    .add(TaskDetailSubtaskChanged(
+                                      subtasks: newSubtask,
+                                    ));
+                              }))
+                          .toList(),
+                    ),
+                  );
+                },
+              )
             ],
           ),
         ),
       ),
     );
-    ;
   }
 }

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:timee/models/task.dart';
+import 'package:task_api/models/task.dart';
 import 'package:timee/task_detail/view/task_detail_page.dart';
 
 class TaskEntry extends StatelessWidget {
@@ -8,17 +8,16 @@ class TaskEntry extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final completePercentage =
-        (task.finishedTaskPoint / task.totalTaskPoint).toStringAsFixed(1);
+    final completePercentage = (task.finishedTaskPoint / task.totalTaskPoint);
     return Card(
-      color: Color(0xFAFAFAFA),
+      //TODO: match color to theme
+      color: const Color(0xFAFAFAFA),
       clipBehavior: Clip.antiAlias,
       borderOnForeground: true,
       elevation: 0.0,
       child: InkWell(
         onTap: () {
-          Navigator.of(context)
-              .push<void>(TaskDetailPage.route(initialTask: task));
+          Navigator.of(context).push<void>(TaskDetailPage.route(task: task));
         },
         child: Column(
           children: [
@@ -28,24 +27,25 @@ class TaskEntry extends StatelessWidget {
                   child: ListTile(
                     title: Text(task.title),
                     subtitle: Wrap(
-                      children: const [
-                        Text('this'),
-                        Text('is'),
+                      children: [
+                        Text(task.id.isEmpty ? 'empty' : task.id),
                       ],
                     ),
                   ),
                 ),
-                Text('$completePercentage% completed'),
+                Text(
+                    '${(completePercentage * 100).toStringAsFixed(2)}% completed'),
                 const SizedBox(
                   width: 12,
                 ),
               ],
             ),
-            const LinearProgressIndicator(
+            LinearProgressIndicator(
               minHeight: 6.0,
-              value: 0.5,
+              value: completePercentage,
               backgroundColor: Colors.transparent,
-              valueColor: AlwaysStoppedAnimation<Color>(Colors.yellow),
+              //TODO: match color to theme
+              valueColor: const AlwaysStoppedAnimation<Color>(Colors.yellow),
             ),
           ],
         ),

@@ -1,32 +1,55 @@
-class Task {
-  final String title;
-  final DateTime createdDate;
-  final DateTime completedDate;
-  final int totalTaskPoint;
-  final int finishedTaskPoint;
-  final List<Group> groups;
-  final List<Subtask> subtasks;
+// import 'package:equatable/equatable.dart';
 
-  Task({
-    required this.title,
-    required this.createdDate,
-    required this.completedDate,
-    required this.totalTaskPoint,
-    required this.finishedTaskPoint,
-    this.groups = const [],
-    this.subtasks = const [],
-  });
-}
+// class Task extends Equatable {
+//   final String title;
+//   final DateTime createdDate;
+//   final DateTime completedDate;
+//   final int totalTaskPoint;
+//   final int finishedTaskPoint;
+//   final List<Group> groups;
+//   final List<Subtask> subtasks;
 
-class Subtask {
-  final String title;
-  final bool isDone;
+//   const Task({
+//     required this.title,
+//     required this.createdDate,
+//     required this.completedDate,
+//     required this.totalTaskPoint,
+//     required this.finishedTaskPoint,
+//     this.groups = const [],
+//     this.subtasks = const [],
+//   });
 
-  const Subtask({required this.title, required this.isDone});
-}
+//   @override
+//   List<Object?> get props => [
+//         title,
+//         createdDate,
+//         completedDate,
+//         totalTaskPoint,
+//         finishedTaskPoint,
+//         groups,
+//         subtasks,
+//       ];
+// }
 
-class Group {
-  final String title;
+// class Subtask extends Equatable {
+//   final String title;
+//   final bool isDone;
 
-  const Group({required this.title});
-}
+//   const Subtask({required this.title, required this.isDone});
+
+//   Subtask copyWith({String? title, bool? isDone}) {
+//     return Subtask(title: title ?? this.title, isDone: isDone ?? this.isDone);
+//   }
+
+//   @override
+//   List<Object?> get props => [title, isDone];
+// }
+
+// class Group extends Equatable {
+//   final String title;
+
+//   const Group({required this.title});
+
+//   @override
+//   List<Object?> get props => [title];
+// }
