@@ -313,16 +313,20 @@ packages:
   task_api:
     dependency: "direct main"
     description:
-      path: "../task_api"
-      relative: true
-    source: path
+      path: "."
+      ref: main
+      resolved-ref: "323519fcdd7b4635d159e4b645686fb6eb43d002"
+      url: "https://github.com/LocTr/task_api"
+    source: git
     version: "0.0.1"
   tasks_repo:
     dependency: "direct main"
     description:
-      path: "../tasks_repo"
-      relative: true
-    source: path
+      path: "."
+      ref: main
+      resolved-ref: "50d2e48b7832f5ec61383303ce43e56e448eec73"
+      url: "https://github.com/LocTr/tasks-repo"
+    source: git
     version: "0.0.1"
   term_glyph:
     dependency: transitive
