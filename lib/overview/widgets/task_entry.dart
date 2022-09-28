@@ -10,7 +10,8 @@ class TaskEntry extends StatelessWidget {
   Widget build(BuildContext context) {
     final completePercentage = (task.finishedTaskPoint / task.totalTaskPoint);
     return Card(
-      color: Color(0xFAFAFAFA),
+      //TODO: match color to theme
+      color: const Color(0xFAFAFAFA),
       clipBehavior: Clip.antiAlias,
       borderOnForeground: true,
       elevation: 0.0,
@@ -43,7 +44,8 @@ class TaskEntry extends StatelessWidget {
               minHeight: 6.0,
               value: completePercentage,
               backgroundColor: Colors.transparent,
-              valueColor: AlwaysStoppedAnimation<Color>(Colors.yellow),
+              //TODO: match color to theme
+              valueColor: const AlwaysStoppedAnimation<Color>(Colors.yellow),
             ),
           ],
         ),

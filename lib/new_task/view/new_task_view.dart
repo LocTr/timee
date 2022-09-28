@@ -29,7 +29,7 @@ class _NewTaskViewState extends State<NewTaskView> {
                 child: Padding(
                   padding: const EdgeInsets.all(24.0),
                   child: ListView(
-                    physics: BouncingScrollPhysics(),
+                    physics: const BouncingScrollPhysics(),
                     children: [
                       SizedBox(
                         height: 90,

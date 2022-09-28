@@ -7,7 +7,6 @@ class ReportView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    int hours = 0;
     return Scaffold(
       body: SafeArea(
         child: Padding(
@@ -21,7 +20,7 @@ class ReportView extends StatelessWidget {
               LayoutBuilder(
                 builder: (BuildContext context, BoxConstraints constraints) {
                   double width = constraints.maxWidth;
-                  return LineChartSample1();
+                  return const LineChartSample1();
                 },
               ),
             ],

@@ -12,7 +12,8 @@ class OverviewView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xFFFFFFFF),
+      //TODO: match color to theme
+      backgroundColor: const Color(0xFFFFFFFF),
       body: SafeArea(
           child: Padding(
               padding: const EdgeInsets.all(8.0),
@@ -27,9 +28,6 @@ class OverviewView extends StatelessWidget {
                       if (state.tasks.isEmpty) {
                         return const Text('No task yet.');
                       } else {
-                        for (var task in state.tasks) {
-                          print('id:' + task.id);
-                        }
                         return Column(
                           children: state.tasks
                               .map((task) => TaskEntry(task: task))

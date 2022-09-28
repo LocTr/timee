@@ -75,8 +75,6 @@ class _Addsubtask extends StatefulWidget {
 }
 
 class _AddsubtaskState extends State<_Addsubtask> {
-  FocusNode _focusNode = FocusNode();
-
   @override
   Widget build(BuildContext context) {
     return Row(
@@ -84,7 +82,6 @@ class _AddsubtaskState extends State<_Addsubtask> {
       children: [
         Expanded(
           child: TextField(
-            focusNode: _focusNode,
             onSubmitted: (value) {
               var bloc = context.read<NewTaskBloc>();
               final subtasks = bloc.state.task.subtasks.toList()
