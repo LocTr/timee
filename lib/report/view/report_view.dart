@@ -19,7 +19,7 @@ class ReportView extends StatelessWidget {
               const SizedBox(height: 24),
               LayoutBuilder(
                 builder: (BuildContext context, BoxConstraints constraints) {
-                  double width = constraints.maxWidth;
+                  // double width = constraints.maxWidth;
                   return const LineChartSample1();
                 },
               ),
