@@ -1,6 +1,6 @@
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
-import 'package:task_api/models/task.dart';
+import 'package:tasks_api/models/task.dart';
 import 'package:tasks_repo/tasks_repo.dart';
 
 part 'task_detail_event.dart';

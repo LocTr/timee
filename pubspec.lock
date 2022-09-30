@@ -98,7 +98,7 @@ packages:
       name: fl_chart
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.55.1"
+    version: "0.55.2"
   flat_buffers:
     dependency: transitive
     description:
@@ -234,7 +234,7 @@ packages:
       name: path_provider_platform_interface
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "2.0.4"
+    version: "2.0.5"
   path_provider_windows:
     dependency: transitive
     description:
@@ -310,21 +310,12 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.1.0"
-  task_api:
-    dependency: transitive
-    description:
-      path: "."
-      ref: main
-      resolved-ref: "323519fcdd7b4635d159e4b645686fb6eb43d002"
-      url: "https://github.com/LocTr/task_api"
-    source: git
-    version: "0.0.1"
   tasks_api:
     dependency: "direct main"
     description:
       path: "."
       ref: main
-      resolved-ref: "5c0cba23811469bb5075dd62d1bb0dd29f875f72"
+      resolved-ref: f0795913d20e7baf7de00121ef44dc236871cf7c
       url: "https://github.com/LocTr/tasks-api"
     source: git
     version: "0.0.1"
@@ -333,7 +324,7 @@ packages:
     description:
       path: "."
       ref: main
-      resolved-ref: "50d2e48b7832f5ec61383303ce43e56e448eec73"
+      resolved-ref: "042202e919baf7b3d0a58a9ecde42f30af02abcb"
       url: "https://github.com/LocTr/tasks-repo"
     source: git
     version: "0.0.1"

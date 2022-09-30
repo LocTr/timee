@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:tasks_repo/tasks_repo.dart';
 import 'package:tsks/new_task/bloc/new_task_bloc.dart';
 import 'package:tsks/new_task/view/new_task_view.dart';
 

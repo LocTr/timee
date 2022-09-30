@@ -39,13 +39,14 @@ dependencies:
   flutter_bloc: ^8.1.1
   fl_chart: ^0.55.1
   collection: ^1.16.0
-  tasks_repo:
-    git:
-      url: https://github.com/LocTr/tasks-repo
-      ref: main
+
   tasks_api:
     git:
       url: https://github.com/LocTr/tasks-api
+      ref: main
+  tasks_repo:
+    git:
+      url: https://github.com/LocTr/tasks-repo
       ref: main
   hive: ^2.2.3
   hive_flutter: ^1.1.0
