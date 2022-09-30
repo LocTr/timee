@@ -43,9 +43,9 @@ dependencies:
     git:
       url: https://github.com/LocTr/tasks-repo
       ref: main
-  task_api:
+  tasks_api:
     git:
-      url: https://github.com/LocTr/task_api
+      url: https://github.com/LocTr/tasks-api
       ref: main
   hive: ^2.2.3
   hive_flutter: ^1.1.0

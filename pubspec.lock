@@ -311,12 +311,21 @@ packages:
     source: hosted
     version: "1.1.0"
   task_api:
-    dependency: "direct main"
+    dependency: transitive
     description:
       path: "."
       ref: main
       resolved-ref: "323519fcdd7b4635d159e4b645686fb6eb43d002"
       url: "https://github.com/LocTr/task_api"
+    source: git
+    version: "0.0.1"
+  tasks_api:
+    dependency: "direct main"
+    description:
+      path: "."
+      ref: main
+      resolved-ref: "5c0cba23811469bb5075dd62d1bb0dd29f875f72"
+      url: "https://github.com/LocTr/tasks-api"
     source: git
     version: "0.0.1"
   tasks_repo:
