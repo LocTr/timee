@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:timee/new_task/bloc/new_task_bloc.dart';
-import 'package:timee/new_task/widgets/new_subtasks.dart';
-import 'package:timee/new_task/widgets/point_picker.dart';
-import 'package:timee/shared_widget/header.dart';
+import 'package:tsks/new_task/bloc/new_task_bloc.dart';
+import 'package:tsks/new_task/widgets/new_subtasks.dart';
+import 'package:tsks/new_task/widgets/point_picker.dart';
+import 'package:tsks/shared_widget/header.dart';
 
 class NewTaskView extends StatefulWidget {
   const NewTaskView({Key? key}) : super(key: key);

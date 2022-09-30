@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:timee/report/widgets/chart/linechart.dart';
-import 'package:timee/shared_widget/header.dart';
+import 'package:tsks/report/widgets/chart/linechart.dart';
+import 'package:tsks/shared_widget/header.dart';
 
 class ReportView extends StatelessWidget {
   const ReportView({Key? key}) : super(key: key);

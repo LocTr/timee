@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:timee/task_detail/bloc/task_detail_bloc.dart';
+import 'package:tsks/task_detail/bloc/task_detail_bloc.dart';
 
 class TaskPointSlider extends StatefulWidget {
   const TaskPointSlider({

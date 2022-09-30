@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:task_api/models/task.dart';
-import 'package:timee/new_task/bloc/new_task_bloc.dart';
+import 'package:tsks/new_task/bloc/new_task_bloc.dart';
 import 'package:collection/collection.dart';
 
 class NewSubtasks extends StatelessWidget {

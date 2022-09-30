@@ -1,5 +1,5 @@
 // import 'package:flutter/material.dart';
-// import 'package:timee/new_task/widgets/wheel_picker.dart';
+// import 'package:tsks/new_task/widgets/wheel_picker.dart';
 
 // class FinishPage extends StatelessWidget {
 //   const FinishPage({Key? key}) : super(key: key);

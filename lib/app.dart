@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:tasks_repo/tasks_repo.dart';
-import 'package:timee/overview/view/overview_page.dart';
+import 'package:tsks/overview/view/overview_page.dart';
 
 class App extends StatelessWidget {
   const App({Key? key, required this.tasksRepo}) : super(key: key);

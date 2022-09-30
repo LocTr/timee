@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:timee/report/view/report_view.dart';
+import 'package:tsks/report/view/report_view.dart';
 
 class ReportPage extends StatelessWidget {
   const ReportPage({Key? key}) : super(key: key);

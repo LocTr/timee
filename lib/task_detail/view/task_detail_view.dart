@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:timee/shared_widget/header.dart';
-import 'package:timee/task_detail/bloc/task_detail_bloc.dart';
-import 'package:timee/task_detail/widgets/subtask_entry.dart';
-import 'package:timee/task_detail/widgets/task_point_slider.dart';
+import 'package:tsks/shared_widget/header.dart';
+import 'package:tsks/task_detail/bloc/task_detail_bloc.dart';
+import 'package:tsks/task_detail/widgets/subtask_entry.dart';
+import 'package:tsks/task_detail/widgets/task_point_slider.dart';
 import 'package:collection/collection.dart';
 
 class TaskDetailView extends StatefulWidget {

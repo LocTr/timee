@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:timee/new_task/view/new_task_page.dart';
-import 'package:timee/overview/bloc/overview_bloc.dart';
-import 'package:timee/report/view/report_page.dart';
+import 'package:tsks/new_task/view/new_task_page.dart';
+import 'package:tsks/overview/bloc/overview_bloc.dart';
+import 'package:tsks/report/view/report_page.dart';
 
 import '../widgets/task_entry.dart';
 
