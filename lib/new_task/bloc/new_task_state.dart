@@ -1,10 +1,10 @@
-part of 'new_task_bloc.dart';
+part of 'new_quest_bloc.dart';
 
-class NewTaskState extends Equatable {
-  const NewTaskState(this.task);
+class NewQuestState extends Equatable {
+  const NewQuestState(this.quest);
 
-  final Task task;
+  final Quest quest;
 
   @override
-  List<Object> get props => [task];
+  List<Object> get props => [quest];
 }

@@ -1,21 +1,21 @@
-part of 'new_task_bloc.dart';
+part of 'new_quest_bloc.dart';
 
-abstract class NewTaskEvent extends Equatable {
-  const NewTaskEvent();
+abstract class NewQuestEvent extends Equatable {
+  const NewQuestEvent();
 
   @override
   List<Object> get props => [];
 }
 
-class TaskDetailChange extends NewTaskEvent {
-  const TaskDetailChange({required this.task});
+class TaskDetailChange extends NewQuestEvent {
+  const TaskDetailChange({required this.quest});
 
-  final Task task;
+  final Quest quest;
 
   @override
-  List<Object> get props => [task];
+  List<Object> get props => [quest];
 }
 
-class TaskSaved extends NewTaskEvent {
+class TaskSaved extends NewQuestEvent {
   const TaskSaved();
 }

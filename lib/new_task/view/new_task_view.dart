@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:tsks/new_task/bloc/new_task_bloc.dart';
-import 'package:tsks/new_task/widgets/new_subtasks.dart';
-import 'package:tsks/new_task/widgets/point_picker.dart';
+import 'package:tsks/new_task/bloc/new_quest_bloc.dart';
 import 'package:tsks/shared_widget/header.dart';
 
 class NewTaskView extends StatefulWidget {
@@ -33,7 +31,7 @@ class _NewTaskViewState extends State<NewTaskView> {
                     children: [
                       SizedBox(
                         height: 90,
-                        child: BlocBuilder<NewTaskBloc, NewTaskState>(
+                        child: BlocBuilder<NewQuestBloc, NewQuestState>(
                           builder: (context, state) {
                             return TextField(
                               decoration: const InputDecoration(
@@ -41,9 +39,9 @@ class _NewTaskViewState extends State<NewTaskView> {
                               ),
                               onChanged: (value) {
                                 context
-                                    .read<NewTaskBloc>()
+                                    .read<NewQuestBloc>()
                                     .add(TaskDetailChange(
-                                        task: state.task.copyWith(
+                                        quest: state.quest.copyWith(
                                       title: value,
                                     )));
                               },
@@ -52,8 +50,6 @@ class _NewTaskViewState extends State<NewTaskView> {
                         ),
                       ),
                       const SizedBox(height: 24),
-                      const PointPicker(),
-                      const NewSubtasks(),
                     ],
                   ),
                 ),
@@ -61,17 +57,16 @@ class _NewTaskViewState extends State<NewTaskView> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [
-                  BlocBuilder<NewTaskBloc, NewTaskState>(
+                  BlocBuilder<NewQuestBloc, NewQuestState>(
                     builder: (context, state) {
                       return Padding(
                         padding: const EdgeInsets.only(
                             bottom: 24.0, left: 24.0, right: 24.0),
                         child: TextButton(
-                          onPressed: (state.task.title.isNotEmpty &&
-                                  state.task.totalTaskPoint != 0)
+                          onPressed: (state.quest.title.isNotEmpty)
                               ? () {
                                   context
-                                      .read<NewTaskBloc>()
+                                      .read<NewQuestBloc>()
                                       .add(const TaskSaved());
                                 }
                               : null,
