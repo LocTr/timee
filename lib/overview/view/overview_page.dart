@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:tasks_repo/tasks_repo.dart';
+import 'package:quests_repo/quests_repo.dart';
 import 'package:tsks/overview/bloc/overview_bloc.dart';
 import 'package:tsks/overview/view/overview_view.dart';
 
@@ -11,7 +11,7 @@ class OverviewPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (context) => OverviewBloc(
-        tasksRepo: context.read<TasksRepo>(),
+        questsRepo: context.read<QuestsRepo>(),
       )..add(const OverviewSubscriptionRequested()),
       child: const OverviewView(),
     );

@@ -1,14 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:tasks_api/models/task.dart';
-import 'package:tsks/task_detail/view/task_detail_page.dart';
+import 'package:quests_api/models/quest.dart';
+import 'package:tsks/task_detail/view/quest_detail_page.dart';
 
 class TaskEntry extends StatelessWidget {
-  final Task task;
-  const TaskEntry({Key? key, required this.task}) : super(key: key);
+  final Quest quest;
+  const TaskEntry({Key? key, required this.quest}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    final completePercentage = (task.finishedTaskPoint / task.totalTaskPoint);
     return Card(
       //TODO: match color to theme
       color: const Color(0xFAFAFAFA),
@@ -17,7 +16,7 @@ class TaskEntry extends StatelessWidget {
       elevation: 0.0,
       child: InkWell(
         onTap: () {
-          Navigator.of(context).push<void>(TaskDetailPage.route(task: task));
+          Navigator.of(context).push<void>(QuestDetailPage.route(quest: quest));
         },
         child: Column(
           children: [
@@ -25,27 +24,15 @@ class TaskEntry extends StatelessWidget {
               children: [
                 Expanded(
                   child: ListTile(
-                    title: Text(task.title),
+                    title: Text(quest.title),
                     subtitle: Wrap(
                       children: [
-                        Text(task.id.isEmpty ? 'empty' : task.id),
+                        Text(quest.id.isEmpty ? 'empty' : quest.id),
                       ],
                     ),
                   ),
                 ),
-                Text(
-                    '${(completePercentage * 100).toStringAsFixed(2)}% completed'),
-                const SizedBox(
-                  width: 12,
-                ),
               ],
-            ),
-            LinearProgressIndicator(
-              minHeight: 6.0,
-              value: completePercentage,
-              backgroundColor: Colors.transparent,
-              //TODO: match color to theme
-              valueColor: const AlwaysStoppedAnimation<Color>(Colors.yellow),
             ),
           ],
         ),

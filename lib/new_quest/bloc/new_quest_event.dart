@@ -7,8 +7,8 @@ abstract class NewQuestEvent extends Equatable {
   List<Object> get props => [];
 }
 
-class TaskDetailChange extends NewQuestEvent {
-  const TaskDetailChange({required this.quest});
+class QuestDetailChange extends NewQuestEvent {
+  const QuestDetailChange({required this.quest});
 
   final Quest quest;
 
@@ -16,6 +16,6 @@ class TaskDetailChange extends NewQuestEvent {
   List<Object> get props => [quest];
 }
 
-class TaskSaved extends NewQuestEvent {
-  const TaskSaved();
+class QuestSaved extends NewQuestEvent {
+  const QuestSaved();
 }

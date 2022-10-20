@@ -1,10 +1,10 @@
 part of 'overview_bloc.dart';
 
 class OverviewState extends Equatable {
-  const OverviewState({this.tasks = const []});
+  const OverviewState({this.quests = const []});
 
-  final List<Task> tasks;
+  final List<Quest> quests;
 
   @override
-  List<Object> get props => [tasks];
+  List<Object> get props => [quests];
 }

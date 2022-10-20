@@ -1,17 +1,27 @@
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/hive_flutter.dart';
-import 'package:tasks_api/tasks_api.dart';
-import 'package:tasks_repo/tasks_repo.dart';
+import 'package:quests_api/models/enums.dart';
+import 'package:quests_api/models/goal.dart';
+import 'package:quests_api/models/quest.dart';
+import 'package:quests_api/quests_api.dart';
+import 'package:quests_repo/quests_repo.dart';
 import 'package:tsks/app.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
-  Hive.initFlutter('box');
-  final tasksApi = await TasksApi.create();
-  final progressApi = await ProgressPointApi.create();
+  await Hive.initFlutter('box');
+  Hive
+    ..registerAdapter(RepeatAdapter())
+    ..registerAdapter(StatAdapter())
+    ..registerAdapter(DifficultyAdapter())
+    ..registerAdapter(BountyAdapter())
+    ..registerAdapter(GoalAdapter())
+    ..registerAdapter(QuestAdapter());
+  final questsBox = await Hive.openBox<Quest>('task-box');
+  final questsApi = QuestsApi(box: questsBox);
 
-  final tasksRepo = TasksRepo(taskApi: tasksApi, progressApi: progressApi);
+  final questsRepo = QuestsRepo(questsApi: questsApi);
 
-  runApp(App(tasksRepo: tasksRepo));
+  runApp(App(questsRepo: questsRepo));
 }

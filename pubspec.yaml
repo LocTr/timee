@@ -40,17 +40,18 @@ dependencies:
   fl_chart: ^0.55.1
   collection: ^1.16.0
 
-  tasks_api:
+  quests_api:
     git:
-      url: https://github.com/LocTr/tasks-api
+      url: https://github.com/LocTr/quests-api
       ref: main
-  tasks_repo:
+  quests_repo:
     git:
-      url: https://github.com/LocTr/tasks-repo
+      url: https://github.com/LocTr/quests-repo
       ref: main
   hive: ^2.2.3
   hive_flutter: ^1.1.0
   uuid: ^3.0.6
+  toggle_switch: ^2.0.1
 
 dev_dependencies:
   flutter_test:

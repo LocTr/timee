@@ -19,12 +19,3 @@ class TaskDetailProgressChanged extends TaskDetailEvent {
   @override
   List<Object> get props => [taskPoint];
 }
-
-class TaskDetailSubtaskChanged extends TaskDetailEvent {
-  const TaskDetailSubtaskChanged({required this.subtasks});
-
-  final List<Subtask> subtasks;
-
-  @override
-  List<Object> get props => [subtasks];
-}

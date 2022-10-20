@@ -1,27 +1,27 @@
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
-import 'package:tasks_api/models/task.dart';
-import 'package:tasks_repo/tasks_repo.dart';
+import 'package:quests_api/models/quest.dart';
+import 'package:quests_repo/quests_repo.dart';
 
 part 'overview_event.dart';
 part 'overview_state.dart';
 
 class OverviewBloc extends Bloc<OverviewEvent, OverviewState> {
-  OverviewBloc({required TasksRepo tasksRepo})
-      : _tasksRepo = tasksRepo,
+  OverviewBloc({required QuestsRepo questsRepo})
+      : _questsRepo = questsRepo,
         super(const OverviewState()) {
-    on<OverviewSubscriptionRequested>(_onSubscriptionRequiested);
+    on<OverviewSubscriptionRequested>(_onSubscriptionRequested);
   }
 
-  final TasksRepo _tasksRepo;
+  final QuestsRepo _questsRepo;
 
-  Future<void> _onSubscriptionRequiested(
+  Future<void> _onSubscriptionRequested(
     OverviewSubscriptionRequested event,
     Emitter<OverviewState> emit,
   ) async {
-    await emit.forEach<List<Task>>(
-      _tasksRepo.getTasks(),
-      onData: (tasks) => OverviewState(tasks: tasks),
+    await emit.forEach<List<Quest>>(
+      _questsRepo.getQuests(),
+      onData: (quests) => OverviewState(quests: quests),
     );
   }
 }

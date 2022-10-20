@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:tsks/new_task/view/new_task_page.dart';
+import 'package:tsks/new_quest/view/new_quest_page.dart';
 import 'package:tsks/overview/bloc/overview_bloc.dart';
 import 'package:tsks/report/view/report_page.dart';
 
@@ -25,12 +25,12 @@ class OverviewView extends StatelessWidget {
                       )),
                   BlocBuilder<OverviewBloc, OverviewState>(
                     builder: (context, state) {
-                      if (state.tasks.isEmpty) {
+                      if (state.quests.isEmpty) {
                         return const Text('No task yet.');
                       } else {
                         return Column(
-                          children: state.tasks
-                              .map((task) => TaskEntry(task: task))
+                          children: state.quests
+                              .map((task) => TaskEntry(quest: task))
                               .toList(),
                         );
                       }
@@ -50,7 +50,7 @@ class OverviewView extends StatelessWidget {
                 icon: const Icon(Icons.pie_chart_outline)),
             IconButton(
                 onPressed: () {
-                  Navigator.push(context, NewTaskPage.route());
+                  Navigator.push(context, NewQuestPage.route());
                 },
                 icon: const Icon(Icons.add)),
             IconButton(onPressed: () {}, icon: const Icon(Icons.menu)),
