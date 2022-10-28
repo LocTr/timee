@@ -10,3 +10,7 @@ abstract class OverviewEvent extends Equatable {
 class OverviewSubscriptionRequested extends OverviewEvent {
   const OverviewSubscriptionRequested();
 }
+
+class OverviewQuestRenewed extends OverviewEvent {
+  const OverviewQuestRenewed();
+}
