@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:quests_api/models/quest.dart';
+import 'package:tsks/overview/bloc/overview_bloc.dart';
 import 'package:tsks/task_detail/view/quest_detail_page.dart';
+import 'package:tsks/utils/date_util.dart';
 
 class TaskEntry extends StatelessWidget {
   final Quest quest;
@@ -27,7 +30,7 @@ class TaskEntry extends StatelessWidget {
                     title: Text(quest.title),
                     subtitle: Wrap(
                       children: [
-                        Text(quest.id.isEmpty ? 'empty' : quest.id),
+                        Text(DateUtil.getReadableDate(quest.createdAt)),
                       ],
                     ),
                   ),

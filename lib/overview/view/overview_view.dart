@@ -30,7 +30,7 @@ class OverviewView extends StatelessWidget {
                       } else {
                         return Column(
                           children: state.quests
-                              .map((task) => TaskEntry(quest: task))
+                              .map((quest) => TaskEntry(quest: quest))
                               .toList(),
                         );
                       }

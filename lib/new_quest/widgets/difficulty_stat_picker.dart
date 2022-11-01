@@ -1,10 +1,9 @@
-import 'dart:async';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:quests_api/models/enums.dart';
 import 'package:toggle_switch/toggle_switch.dart';
 import 'package:tsks/new_quest/bloc/new_quest_bloc.dart';
+import 'package:tsks/utils/date_util.dart';
 
 class DifficultyStatPicker extends StatelessWidget {
   const DifficultyStatPicker({Key? key}) : super(key: key);
@@ -22,12 +21,11 @@ class DifficultyStatPicker extends StatelessWidget {
             width: double.infinity,
             height: MediaQuery.of(context).size.height * 0.4,
             child: BlocBuilder<NewQuestBloc, NewQuestState>(
-              builder: (ancestorContext, state) {
-                print('fasdf');
+              builder: (context, state) {
                 return Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text('Difficulty:'),
+                    const Text('Difficulty:'),
                     ToggleSwitch(
                       totalSwitches: 3,
                       minWidth: 200,
@@ -40,7 +38,7 @@ class DifficultyStatPicker extends StatelessWidget {
                                 difficulty: Difficulty.values[index!])));
                       },
                     ),
-                    Text('  Stat gain:'),
+                    const Text('  Stat gain:'),
                     ToggleSwitch(
                       initialLabelIndex: state.quest.stat.index,
                       minWidth: 200,
@@ -60,37 +58,27 @@ class DifficultyStatPicker extends StatelessWidget {
 
     return BlocBuilder<NewQuestBloc, NewQuestState>(
       builder: (context, state) {
-        return Row(
-          children: [
-            Text('Difficulty:'),
-            DropdownButton<Difficulty>(
-              items: Difficulty.values
-                  .map((val) => DropdownMenuItem<Difficulty>(
-                        value: val,
-                        child: Text(val.name),
-                      ))
-                  .toList(),
-              value: state.quest.difficulty,
-              onChanged: (Difficulty? value) {
-                context.read<NewQuestBloc>().add(QuestDetailChange(
-                    quest: state.quest.copyWith(difficulty: value)));
-              },
-            ),
-            const Text('    Stat gain:'),
-            InkWell(
-              onTap: () {
-                showDialog(
-                    context: context,
-                    builder: (_) {
-                      return BlocProvider.value(
-                        value: context.watch<NewQuestBloc>(),
-                        child: _pickerDialog(),
-                      );
-                    });
-              },
-              child: Text(context.read<NewQuestBloc>().state.quest.stat.name),
-            ),
-          ],
+        return GestureDetector(
+          onTap: () {
+            showDialog(
+                context: context,
+                builder: (_) {
+                  return BlocProvider.value(
+                    value: context.watch<NewQuestBloc>(),
+                    child: _pickerDialog(),
+                  );
+                });
+          },
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                  'Start date: ${DateUtil.getReadableDate(state.quest.createdAt)}     Repeat: ${state.quest.repeat.name}     '),
+              const SizedBox(height: 12),
+              Text('Difficulty: ${state.quest.difficulty.name}'
+                  '     Stat gain: ${state.quest.stat.name}'),
+            ],
+          ),
         );
       },
     );

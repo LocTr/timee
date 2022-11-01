@@ -32,7 +32,8 @@ class _NewquestViewState extends State<NewquestView> {
                     child: ListView(
                       physics: const BouncingScrollPhysics(),
                       children: [
-                        DifficultyStatPicker(),
+                        const DifficultyStatPicker(),
+                        const SizedBox(height: 24),
                         BlocBuilder<NewQuestBloc, NewQuestState>(
                           builder: (context, state) {
                             return TextField(

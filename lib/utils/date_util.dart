@@ -1,3 +1,5 @@
+import 'package:intl/date_symbol_data_file.dart';
+import 'package:intl/intl.dart';
 import 'package:quests_api/models/enums.dart';
 
 class DateUtil {
@@ -21,4 +23,15 @@ class DateUtil {
         return DateTime(now.year, now.month + 1, now.day);
     }
   }
+
+  static String getReadableDate(DateTime date) {
+    return DateFormat.yMMMd().format(date);
+  }
+}
+
+void main(List<String> args) {
+  final now = DateTime.now();
+  String formattedStr = DateFormat.yMMMd().format(now);
+  print(formattedStr);
+  return;
 }
