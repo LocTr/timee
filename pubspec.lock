@@ -323,7 +323,7 @@ packages:
       name: path_provider_android
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "2.0.21"
+    version: "2.0.20"
   path_provider_ios:
     dependency: transitive
     description:
@@ -406,7 +406,7 @@ packages:
     description:
       path: "."
       ref: main
-      resolved-ref: "74baba2180fd7abf74c571484497da7582ce2628"
+      resolved-ref: "7de2de32441080c93c85bcb48f335f92a7228796"
       url: "https://github.com/LocTr/quests-api"
     source: git
     version: "0.0.1"
@@ -415,7 +415,7 @@ packages:
     description:
       path: "."
       ref: main
-      resolved-ref: "49b55a984f4febcb2fc5b34f2bcb1cac68b1f8d7"
+      resolved-ref: "6b2ceb7e2e0374bc917ba4d128680d51f0687ed3"
       url: "https://github.com/LocTr/quests-repo"
     source: git
     version: "0.0.1"

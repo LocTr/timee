@@ -9,14 +9,24 @@ extension DateTimeExtension on DateTime {
         .inDays;
   }
 
+  DateTime nextWeekday(int weekday) {
+    return add(Duration(days: (weekday - this.weekday) % DateTime.daysPerWeek));
+  }
+
+  DateTime nextMonthday(int day) {
+    return this.day < day
+        ? add(Duration(days: (day - this.day)))
+        : DateTime(year, month + 1, day);
+  }
+
   DateTime getNextRepeatDate(DateTime baseDate, Repeat repeat) {
     switch (repeat) {
       case Repeat.daily:
-        return DateTime(baseDate.year, baseDate.month, baseDate.day + 1);
+        return DateTime(year, month, day + 1);
       case Repeat.weekly:
-        return DateTime(baseDate.year, baseDate.month, baseDate.day + 7);
+        return nextWeekday(baseDate.weekday);
       case Repeat.monthly:
-        return DateTime(baseDate.year, baseDate.month + 1, baseDate.day);
+        return nextMonthday(baseDate.day);
     }
   }
 
