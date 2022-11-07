@@ -12,7 +12,9 @@ class OverviewPage extends StatelessWidget {
     return BlocProvider(
       create: (context) => OverviewBloc(
         questsRepo: context.read<QuestsRepo>(),
-      )..add(const OverviewSubscriptionRequested()),
+      )
+        ..add(const OverviewSubscriptionRequested())
+        ..add(const OverviewQuestRenewed()),
       child: const OverviewView(),
     );
   }

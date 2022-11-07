@@ -11,33 +11,37 @@ class OverviewView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final GlobalKey<AnimatedListState> _listKey = GlobalKey();
+    print(context.watch<OverviewBloc>().state.quests.length);
     return Scaffold(
       //TODO: match color to theme
       backgroundColor: const Color(0xFFFFFFFF),
       body: SafeArea(
-          child: Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: ListView(
-                children: [
-                  const Text('Today tasks',
-                      style: TextStyle(
-                        fontSize: 24,
-                      )),
-                  BlocBuilder<OverviewBloc, OverviewState>(
-                    builder: (context, state) {
-                      if (state.quests.isEmpty) {
-                        return const Text('No task yet.');
-                      } else {
-                        return Column(
-                          children: state.quests
-                              .map((quest) => TaskEntry(quest: quest))
-                              .toList(),
-                        );
-                      }
-                    },
-                  )
-                ],
-              ))),
+        child: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: ListView(
+            children: [
+              const Text('Today tasks',
+                  style: TextStyle(
+                    fontSize: 24,
+                  )),
+              BlocBuilder<OverviewBloc, OverviewState>(
+                builder: (context, state) {
+                  if (state.quests.isEmpty) {
+                    return const Text('No task yet.');
+                  } else {
+                    return Column(
+                      children: state.quests
+                          .map((quest) => TaskEntry(quest: quest))
+                          .toList(),
+                    );
+                  }
+                },
+              ),
+            ],
+          ),
+        ),
+      ),
       bottomNavigationBar: Padding(
         padding: const EdgeInsets.symmetric(vertical: 12.0),
         child: Row(
@@ -60,3 +64,25 @@ class OverviewView extends StatelessWidget {
     );
   }
 }
+
+// ListView(
+//             children: [
+//               const Text('Today tasks',
+//                   style: TextStyle(
+//                     fontSize: 24,
+//                   )),
+//               BlocBuilder<OverviewBloc, OverviewState>(
+//                 builder: (context, state) {
+//                   if (state.quests.isEmpty) {
+//                     return const Text('No task yet.');
+//                   } else {
+//                     return Column(
+//                       children: state.quests
+//                           .map((quest) => TaskEntry(quest: quest))
+//                           .toList(),
+//                     );
+//                   }
+//                 },
+//               ),
+//             ],
+//           ),
