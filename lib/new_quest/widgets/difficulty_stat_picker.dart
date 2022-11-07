@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:quests_api/models/enums.dart';
 import 'package:toggle_switch/toggle_switch.dart';
 import 'package:tsks/new_quest/bloc/new_quest_bloc.dart';
-import 'package:tsks/utils/date_util.dart';
+import 'package:tsks/utils/datetime_extension.dart';
 
 class DifficultyStatPicker extends StatelessWidget {
   const DifficultyStatPicker({Key? key}) : super(key: key);
@@ -73,7 +73,7 @@ class DifficultyStatPicker extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                  'Start date: ${DateUtil.getReadableDate(state.quest.createdAt)}     Repeat: ${state.quest.repeat.name}     '),
+                  'Start date: ${state.quest.createdAt.getReadableDate()}     Repeat: ${state.quest.repeat.name}     '),
               const SizedBox(height: 12),
               Text('Difficulty: ${state.quest.difficulty.name}'
                   '     Stat gain: ${state.quest.stat.name}'),
