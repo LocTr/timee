@@ -2,8 +2,9 @@ import 'package:intl/intl.dart';
 import 'package:quests_api/models/enums.dart';
 
 extension DateTimeExtension on DateTime {
+  ///difference between provided date and `this` in full days
+  ///[date] - [this]
   int getDateDifference(DateTime date) {
-    //difference between provided date and this
     return DateTime(date.year, date.month, date.day)
         .difference(DateTime(year, month, day))
         .inDays;
@@ -33,11 +34,4 @@ extension DateTimeExtension on DateTime {
   String getReadableDate() {
     return DateFormat.yMMMd().format(this);
   }
-}
-
-void main(List<String> args) {
-  final now = DateTime.now();
-  String formattedStr = DateFormat.yMMMd().format(now);
-  print(formattedStr);
-  return;
 }
