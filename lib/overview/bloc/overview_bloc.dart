@@ -24,7 +24,8 @@ class OverviewBloc extends Bloc<OverviewEvent, OverviewState> {
   ) async {
     await emit.forEach<List<Quest>>(
       _questsRepo.getQuests(),
-      onData: (quests) => OverviewState(quests: quests),
+      onData: (quests) => OverviewState(
+          quests: quests.where((element) => element.isDone == false).toList()),
     );
   }
 
@@ -49,9 +50,8 @@ class OverviewBloc extends Bloc<OverviewEvent, OverviewState> {
   ) async {
     await _questsRepo.saveQuest(event.quest.copyWith(
       isDone: true,
-      //TODO: next reset date
-      // nextResetDate: DateUtil.getNextRepeatDate(
-      //     event.quest.nextResetDate, event.quest.repeat),
+      nextResetDate:
+          DateTime.now().getNextRepeatDate(DateTime.now(), event.quest.repeat),
     ));
   }
 }
